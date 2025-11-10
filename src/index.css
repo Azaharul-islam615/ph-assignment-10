@@ -13,10 +13,10 @@
     
     border-radius: 2px;
 }
-a{
+.all{
   transition: 0.3s;
 }
-a:hover{
+.all:hover{
    border-bottom: 2px solid #62109F;
 }
 @keyframes fadeIn {

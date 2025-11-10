@@ -10,11 +10,14 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Homelayout from './layout/Homelayout.jsx'
 import Home from './component/Home.jsx'
 import Alljobs from './component/Alljobs.jsx'
+import Login from './routes/Login.jsx';
 const router=createBrowserRouter([
 {path:'/',Component:Homelayout,
   children:[
     {index:true,Component:Home},
-    {path:'/allapps',Component:Alljobs}
+    {path:'/allapps',Component:Alljobs},
+    {path:'/login',Component:Login},
+    {path:'/register'}
   ]
 }
 ])

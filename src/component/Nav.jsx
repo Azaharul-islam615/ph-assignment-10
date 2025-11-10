@@ -4,13 +4,13 @@ import img from"../assets/web.webp"
 
 const Nav = () => {
     const links=<>
-        <NavLink to="/" className="hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
-        <NavLink to='/allapps' className=" hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">All Jobs</NavLink>
-        <NavLink className=" hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Add a Job</NavLink>
-        <NavLink className=" hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
+        <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
+        <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">All Jobs</NavLink>
+        <NavLink className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Add a Job</NavLink>
+        <NavLink className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
             Tasks</NavLink>
-        <NavLink className=" hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
-        <NavLink className=" hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
+        <NavLink to="/login" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
+        <NavLink className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
     </>
     return (
         <div className="navbar  shadow-sm bg-[#11224E] text-white">
