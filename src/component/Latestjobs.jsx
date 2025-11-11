@@ -41,7 +41,7 @@ const LatestJobs = () => {
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
             <h2 className="text-3xl font-bold mb-4 text-center">
-                Latest 6 Jobs 
+                Latest 6 <span className='text-[#8C00FF]'> Jobs</span> 
             </h2>
             <p className="text-center text-gray-400 mb-6">
                 Discover recent job opportunities across web development,<br /> design,marketing, and more.  Stay updated <br /> and apply to trusted listings.

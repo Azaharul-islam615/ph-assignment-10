@@ -2,10 +2,10 @@ const AboutPlatform = () => {
     return (
         <div className="max-w-6xl mx-auto px-6 py-14 bg-[#0D1A38] text-white rounded-2xl mt-20 shadow-lg">
             <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <h2 className="text-3xl md:text-3xl font-bold mb-4">
                     Welcome to Smart Deals Marketplace ✨
                 </h2>
-                <p className=" max-w-3xl text-[#CBCBCB] mx-auto text-lg leading-relaxed">
+                <p className=" max-w-3xl text-gray-400  mx-auto  leading-relaxed">
                     A secure and reliable freelance platform where sellers list their products or services
                     and buyers can place offers with confidence. We help connect skilled professionals
                     and real buyers with a smooth and transparent workflow.

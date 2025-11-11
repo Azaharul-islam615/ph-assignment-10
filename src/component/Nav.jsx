@@ -10,10 +10,10 @@ const Nav = () => {
         <NavLink className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
             Tasks</NavLink>
         <NavLink to="/login" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
-        <NavLink className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
+        <NavLink to="/register" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
     </>
     return (
-        <div className="navbar  shadow-sm bg-[#11224E] text-white">
+        <div className="navbar sticky top-0 shadow-sm bg-[#11224E] text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
