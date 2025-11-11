@@ -17,24 +17,30 @@ import AddJob from './routes/Addjob.jsx';
 import Categories from './component/Categories.jsx';
 import Update from './component/Update.jsx';
 import Myacceptedtask from './routes/Myacceptedtask.jsx';
+import { ToastContainer } from 'react-toastify';
+import Authprovider from './Context/Authprovider.jsx';
+import Privetprovider from './component/privetroute/Privetprovider.jsx';
+import Errorpage from './component/Errorpage.jsx';
 
 const router=createBrowserRouter([
 {path:'/',Component:Homelayout,
+    errorElement: <Errorpage></Errorpage>,
   children:[
     {index:true,Component:Home},
-    {path:'/allapps',Component:Alljobs},
+    {path:'/allapps',element:<Privetprovider><Alljobs></Alljobs></Privetprovider>},
     {path:'/login',Component:Login},
     {path:'/register',Component:Register},
-    {path:'/categories',Component:Categories},
-    {path:"/addjob",Component:AddJob},
-    {path:'/update',Component:Update},
-    {path:'/acceptedtask',Component:Myacceptedtask}
+    {path:'/categories',element:<Privetprovider><Categories></Categories></Privetprovider>},
+    {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
+    {path:'/update',element:<Privetprovider><Update></Update></Privetprovider>},
+    {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>}
   ]
 }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Authprovider> <RouterProvider router={router}></RouterProvider></Authprovider>
+    <ToastContainer />
   </StrictMode>,
 )

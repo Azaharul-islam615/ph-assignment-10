@@ -1,8 +1,26 @@
-import React from 'react';
-import { NavLink } from 'react-router';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
 import img from"../assets/web.webp"
+import { AuthContext } from '../Context/Authprovider';
+import { toast } from 'react-toastify';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const Nav = () => {
+    const { user, logout } = use(AuthContext);
+    const handlelogout = () => {
+        logout()
+            .then(() => {
+                toast(
+                    <div className="flex items-center gap-2">
+                        <FaCheckCircle size={20} color="green" />
+                        Logout successfully!
+                    </div>
+                );
+            })
+            .catch((err) => {
+                toast(<div>{err.message}</div>);
+            });
+    };
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
         <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">All Jobs</NavLink>
@@ -13,7 +31,7 @@ const Nav = () => {
         <NavLink to="/register" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
     </>
     return (
-        <div className="navbar sticky top-0 shadow-sm bg-[#11224E] text-white">
+        <div className="navbar  shadow-sm bg-[#11224E] text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,7 +54,29 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</a>
+                {user && (
+                    <div className="relative inline-block group mr-2">
+                        <img
+                            className="w-10 h-10 rounded-full"
+                            src={user.photoURL}
+                            alt={user.displayName}
+                        />
+                        <span className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 text-[10px] text-gray-800 hidden group-hover:block bg-white rounded px-1 shadow">
+                            {user.displayName}
+                        </span>
+                    </div>
+                )}
+                {user ? (
+                    <button
+                        onClick={handlelogout}
+                        className="btn md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
+                    >
+                        Logout
+                    </button>
+                ) : (
+                        <Link to="/login" className="btn md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
+                )}
+                
             </div>
         </div>
     );

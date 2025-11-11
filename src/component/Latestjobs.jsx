@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
+
 const LatestJobs = () => {
+    const navigate=useNavigate()
     const jobs = [
         {
             title: "React Frontend Developer Needed",
@@ -37,6 +40,9 @@ const LatestJobs = () => {
             price: "$120"
         }
     ];
+    const handlebtn=()=>{
+        navigate('/categories')
+    }
 
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
@@ -71,6 +77,7 @@ const LatestJobs = () => {
                         </div>
 
                         <button
+                        onClick={handlebtn}
                             className="mt-6 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-2 rounded-lg font-medium shadow-md transition-all duration-300 w-full"
                         >
                             View Details

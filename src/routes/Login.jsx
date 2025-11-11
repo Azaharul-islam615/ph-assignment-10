@@ -1,68 +1,116 @@
-import React from "react";
+import { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../Context/Authprovider";
+import { toast } from "react-toastify";
+import { FaCheckCircle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
+
+
 const Login = () => {
+    const { login, googleauth, setUser, setUpdatepasswordemail } = use(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [error, setError] = useState("");
+    const [eye, setEye] = useState("")
+    console.log(location.state)
+    const showpassword = () => {
+        setEye(!eye)
+    }
+
+    const handlelogin = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const checkpassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+        if (!checkpassword.test(password)) {
+            if (password.length < 6) {
+                setError(" Password must be at least 6 characters long.");
+                return
+            } else if (!/[A-Z]/.test(password)) {
+                setError(" Password must contain at least one uppercase letter.");
+                return
+            } else if (!/[a-z]/.test(password)) {
+                setError(" Password must contain at least one lowercase letter.");
+                return
+            } else {
+                setError(" Invalid password format.");
+            }
+            return setError("")
+        }
+
+
+
+
+        login(email, password)
+            .then(() => {
+                setError("")
+                navigate(`${location.state ? location.state.from : "/"}`)
+                toast(<div className='flex items-center gap-2'><FaCheckCircle size={20} color='green'></FaCheckCircle> Login succesfully!</div>)
+                e.target.reset()
+            })
+            .catch(err => {
+                e.target.reset()
+
+                toast(<div>{err.message}</div>)
+            })
+
+
+    }
+    const handlegoogleauth = () => {
+        setError("")
+        googleauth()
+            .then(result => {
+                setUser(result.user)
+                toast(<div className='flex items-center gap-2 '><FaCheckCircle size={16} color='green'></FaCheckCircle> Login Succesfilly</div>)
+
+                navigate(`${location.state ? location.state.from : "/"}`)
+            })
+            .catch(err => {
+                toast(<div>{err.message}</div>)
+
+                setError(err.message)
+
+            })
+
+    }
+    const handleEmail = (e) => {
+
+        const email = e.target.value
+        setUpdatepasswordemail(email)
+
+    }
+
     return (
-        <div className="min-h-screen  flex items-center justify-center bg-[#0D1B3E] from-blue-50 to-indigo-100 px-4">
-            <div className="max-w-md w-full bg-white p-10 rounded-2xl shadow-2xl">
-                <h2 className="text-3xl font-bold text-center text-indigo-600 mb-8">
-                    Login Form
-                </h2>
+        <div data-aos="fade-up" className="z-0 card mx-auto my-26 bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <title>ToyTopia-login</title>
+            <div className="card-body ">
+                <h1 className="text-3xl text-center font-bold">Login now!</h1>
+                <form onSubmit={handlelogin}>
+                    <fieldset className="fieldset">
+                        <label className="label text-[14px]">Email</label>
+                        <input onChange={handleEmail} type="email" name='email' className="input  rounded-xl" placeholder="Email" />
+                        <label className="label  text-[14px]">Password</label>
+                        <div className='relative'>
+                            <input type={eye ? "text" : "password"} name='password' className="input  rounded-xl" placeholder="Password" />
+                            <div onClick={showpassword}>
+                                {
+                                    eye ? <FaEye size={16} className='absolute top-3 right-5 z-10'></FaEye> : <FaEyeSlash size={16} className='absolute top-3 right-5 z-10'></FaEyeSlash>
+                                }
+                            </div>
+                        </div>
+                        {error && <p className="text-red-500 mt-2">{error}</p>}
+                        <div className='mt-1'><Link  className="link link-hover  text-[14px] ">Forgot password?</Link></div>
+                        <button type='submit' className="btn btn-neutral rounded-xl mt-2 text-[16px] mb-1">Login</button>
 
-                <form className="space-y-1  ">
-                    <div>
-                        <label className="block text-gray-700 mb-2" htmlFor="email">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-700 mb-2" htmlFor="password">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter your password"
-                            className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        />
-                    </div>
-
-                    <div className="text-right">
-                        <a href="#" className="text-sm text-indigo-500 hover:underline">
-                            Forget Password?
-                        </a>
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-300"
-                    >
-                        Login
-                    </button>
+                    </fieldset>
+                    <h3 className='font-semibold text-[16px] text-gray-600 mt-2'>New in our web site? <Link to="/register" state={location.state} className='underline text-blue-600'>Register</Link> </h3>
                 </form>
-
-                <div className="mt-6 flex items-center justify-center gap-2 text-gray-500">
-                    <span>Or login with</span>
-                </div>
-
-                <button className="mt-4 w-full flex items-center justify-center gap-2 border border-gray-300 hover:bg-gray-100 transition py-3 rounded-lg font-medium">
-                    <FcGoogle size={24} />
-                    Login with Google
+                <button onClick={handlegoogleauth} className="flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-100 hover:shadow-md transition-all duration-300">
+                    <FcGoogle className="text-2xl" />
+                    <span className='text-[15px]'> Login with Google</span>
                 </button>
 
-                <p className="mt-6 text-center text-gray-600">
-                    Don't have an account?{" "}
-                    <a href="#" className="text-indigo-600 font-medium hover:underline">
-                        Register
-                    </a>
-                </p>
             </div>
         </div>
     );

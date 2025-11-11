@@ -12,8 +12,16 @@ import img4 from "../assets/faizur-rehman-pHPzdEHN6Os-unsplash.jpg"
 import LatestJobs from "./Latestjobs";
 import TopCategories from "./Topcategories";
 import AboutPlatform from "./Aboutplatform";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+    const navigate=useNavigate()
+    const handlebtn1=()=>{
+        navigate('/allapps')
+    }
+    const handle2=()=>{
+        navigate('/addjob')
+    }
     return (
         <div className="bg-[#0D1B3E]">
             <div className="relative">
@@ -52,10 +60,10 @@ const Home = () => {
                         Connect with trusted professionals worldwide
                     </p>
                     <div className="mt-6 flex gap-4 justify-center">
-                        <button className="bg-blue-500 hover:bg-blue-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg">
+                        <button onClick={handlebtn1} className="bg-blue-500 hover:bg-blue-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg">
                             Explore Jobs
                         </button>
-                        <button className="bg-green-500 hover:bg-green-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg">
+                        <button onClick={handle2} className="bg-green-500 hover:bg-green-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg">
                             Create a Job
                         </button>
                     </div>

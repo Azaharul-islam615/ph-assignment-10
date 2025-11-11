@@ -1,17 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import app from '../component/firebase/firbase.init';
-
-export const AuthContext = createContext()
-
-const auth = getAuth(app);
+import app from '../component/firebase/firebase.init';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+export const AuthContext=createContext()
 const googleprovider = new GoogleAuthProvider()
-const Authprovider = ({ children }) => {
-    const [updatepasswordemail, setUpdatepasswordemail] = useState("")
-
+const auth=getAuth(app)
+const Authprovider = ({children}) => {
     const [loading, setloading] = useState(true)
     const [user, setUser] = useState(null)
-
+    console.log(user)
     const createUser = (email, password) => {
         setloading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -25,17 +21,10 @@ const Authprovider = ({ children }) => {
         setloading(true)
         return signOut(auth)
     }
-    const updateuserprofile = (updatedata) => {
-        return updateProfile(auth.currentUser, updatedata)
-    }
     const googleauth = () => {
         setloading(true)
         return signInWithPopup(auth, googleprovider)
     }
-    const forgetPassword = (email) => {
-        return sendPasswordResetEmail(auth, email)
-    }
-
     useEffect(() => {
         const Unsubscribe = onAuthStateChanged(auth, (currentuser) => {
             setUser(currentuser)
@@ -45,18 +34,17 @@ const Authprovider = ({ children }) => {
             Unsubscribe()
         }
     }, [])
-    const info = {
+
+    const info={
         user,
         setUser,
         createUser,
         logout,
         login,
         loading,
-        updateuserprofile,
-        googleauth,
-        forgetPassword,
-        setUpdatepasswordemail,
-        updatepasswordemail
+        googleauth
+      
+       
     }
     return <AuthContext value={info}>{children}</AuthContext>
 };
