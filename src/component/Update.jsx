@@ -21,10 +21,10 @@ const UpdateJobStatic = () => {
     };
 
     return (
-        <div className="bg-[#0D1B3E] min-h-screen text-white font-sans pb-20">
+        <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen text-white font-sans pb-20">
 
             {/* Page Title */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-10 text-center">
+            <div data-aos="fade-up" className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-10 text-center">
                 <h1 className="text-4xl font-bold">Update Job</h1>
                 <p className="text-gray-200 mt-2 text-lg">
                     Edit your job information and click Update
@@ -32,14 +32,14 @@ const UpdateJobStatic = () => {
             </div>
 
             {/* Update Form */}
-            <form
+            <form data-aos="fade-up"
                 onSubmit={handleSubmit}
                 className="max-w-4xl mx-auto mt-10 bg-[#10224D] rounded-2xl p-8 shadow-xl border border-[#1c355f]"
             >
 
                 {/* Title */}
-                <label className="text-gray-200 font-medium block mb-1">Job Title</label>
-                <input
+                <label data-aos="fade-up"  className="text-gray-200 font-medium block mb-1">Job Title</label>
+                <input data-aos="fade-up"
                     type="text"
                     name="title"
                     required
@@ -50,8 +50,8 @@ const UpdateJobStatic = () => {
                 />
 
                 {/* Category */}
-                <label className="text-gray-200 font-medium block mb-1">Category</label>
-                <select
+                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Category</label>
+                <select data-aos="fade-up"
                     name="category"
                     required
                     value={form.category}
@@ -67,8 +67,8 @@ const UpdateJobStatic = () => {
                 </select>
 
                 {/* Summary */}
-                <label className="text-gray-200 font-medium block mb-1">Summary</label>
-                <textarea
+                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Summary</label>
+                <textarea data-aos="fade-up"
                     name="summary"
                     required
                     rows="4"
@@ -79,8 +79,8 @@ const UpdateJobStatic = () => {
                 ></textarea>
 
                 {/* Cover Image */}
-                <label className="text-gray-200 font-medium block mb-1">Cover Image URL</label>
-                <input
+                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Cover Image URL</label>
+                <input data-aos="fade-up"
                     type="text"
                     name="coverImage"
                     required
@@ -91,8 +91,8 @@ const UpdateJobStatic = () => {
                 />
 
                 {/* Preview */}
-                <div className="w-full h-52 mt-4 border border-[#244173] rounded-lg overflow-hidden">
-                    <img
+                <div data-aos="fade-up" className="w-full h-52 mt-4 border border-[#244173] rounded-lg overflow-hidden">
+                    <img data-aos="fade-up"
                         src={form.coverImage}
                         alt="Cover Preview"
                         className="w-full h-full object-cover"
@@ -100,7 +100,7 @@ const UpdateJobStatic = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 mt-10">
+                <div data-aos="fade-up" className="flex flex-col sm:flex-row items-center gap-4 mt-10">
 
                     {/* Submit = Update */}
                     <button
@@ -111,7 +111,7 @@ const UpdateJobStatic = () => {
                     </button>
 
                     {/* Reset Button */}
-                    <button
+                    <button data-aos="fade-up"
                         type="reset"
                         className="bg-transparent border border-red-600 hover:bg-red-600 
                         transition text-white w-full sm:w-auto px-7 py-3 rounded-lg font-semibold flex items-center gap-2"

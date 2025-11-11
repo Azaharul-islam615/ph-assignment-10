@@ -23,15 +23,20 @@ const Nav = () => {
     };
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
-        <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">All Jobs</NavLink>
-        <NavLink to="/addjob" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Add a Job</NavLink>
-        <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
-            Tasks</NavLink>
+        <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AllJobs</NavLink>
+        <NavLink to="/addjob" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">AddJob</NavLink>
+        <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]"> AcceptedTasks</NavLink>
+        {
+            user && <>
+                <NavLink to="/myjob" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AddedJobs</NavLink>
+            </>
+        }
         <NavLink to="/login" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
         <NavLink to="/register" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
+       
     </>
     return (
-        <div className="navbar  shadow-sm bg-[#11224E] text-white">
+        <div data-aos="fade-up" className="navbar  shadow-sm bg-[#11224E] text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,17 +44,17 @@ const Nav = () => {
                     </div>
                     <ul
                         tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-black  rounded-box  z-1 mt-3 w-52 p-2 shadow">
                        {links}
                     </ul>
                 </div>
                 <div className='flex gap-0 items-center'>
-                    <img className='w-[50px] h-[50px] rounded-full' src={img} alt="" />
-                    <a className="btn btn-ghost md:text-xl">Freelance <span className='text-[#8C00FF]'>MarketPlace</span> </a>
+                    <img className=' w-[30px] h-[30px] md:w-[50px] md:h-[50px] rounded-full' src={img} alt="" />
+                    <a className="btn btn-ghost text-[11px] md:text-xl">Freelance <span className='text-[#8C00FF]'>MarketPlace</span> </a>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu  menu-horizontal px-1">
                    {links}
                 </ul>
             </div>
@@ -69,12 +74,12 @@ const Nav = () => {
                 {user ? (
                     <button
                         onClick={handlelogout}
-                        className="btn md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
+                        className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
                     >
                         Logout
                     </button>
                 ) : (
-                        <Link to="/login" className="btn md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
+                        <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
                 )}
                 
             </div>

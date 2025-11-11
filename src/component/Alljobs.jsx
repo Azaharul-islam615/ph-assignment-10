@@ -17,7 +17,7 @@ const AllJobs = () => {
             category: "Graphics Design",
             postedBy: "Emma Brown",
             summary: "Create a modern and stylish logo for a startup brand.",
-            image: "https://i.ibb.co/fDm6nPS/logo-design.jpg",
+            image: "https://images.unsplash.com/photo-1585076641399-5c06d1b3365f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnJlZWxhbmNpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
         },
         {
             id: "3",
@@ -25,7 +25,7 @@ const AllJobs = () => {
             category: "Digital Marketing",
             postedBy: "Michael Smith",
             summary: "Boost search ranking and improve traffic organically.",
-            image: "https://i.ibb.co/8NJZ9Ds/seo.jpg",
+            image: "https://images.unsplash.com/photo-1487537708572-3c850b5e856e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZnJlZWxhbmNpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
         },
         {
             id: "4",
@@ -33,7 +33,7 @@ const AllJobs = () => {
             category: "Mobile App",
             postedBy: "Sophia Wilson",
             summary: "Enhance UI experience based on latest UI principles.",
-            image: "https://i.ibb.co/xFT7Byq/mobile-ui.jpg",
+            image: "https://images.unsplash.com/photo-1610473068745-cf5589c24f77?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZyZWVsYW5jaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
         },
         {
             id: "5",
@@ -54,16 +54,17 @@ const AllJobs = () => {
     ];
 
     return (
-        <div className="bg-[#0D1B3E] min-h-screen py-16 text-white">
-            <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
+        <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen py-16 text-white">
+            <title>Freelance MarketPlac-alljobs</title>
+            <div data-aos="fade-up" className="max-w-7xl mx-auto px-6">
+                <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold text-center mb-6">
                     Explore  <span className='text-[#8C00FF]'>All  Jobs</span>
                 </h2>
-                <p className="text-center mb-4 text-gray-400">Discover countless job opportunities posted by trusted clients worldwide. <br /> Browse, apply, and start working on the tasks that  match your <br /> skills — all in one reliable platform.</p>
+                <p data-aos="fade-up" className="text-center mb-4 text-gray-400">Discover countless job opportunities posted by trusted clients worldwide. <br /> Browse, apply, and start working on the tasks that  match your <br /> skills — all in one reliable platform.</p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {jobs.map((job) => (
-                        <div
+                        <div data-aos="fade-up"
                             key={job.id}
                             className="bg-[#11224E] rounded-lg shadow-lg overflow-hidden hover:scale-[1.02] duration-300 border border-transparent hover:border-blue-500"
                         >
@@ -86,7 +87,7 @@ const AllJobs = () => {
                                     {job.summary}
                                 </p>
 
-                                <Link to={`/allJobs/${job.id}`}>
+                                <Link data-aos="fade-up" to={`/allJobs/${job.id}`}>
                                     <button className="bg-blue-600 hover:bg-blue-700 w-full text-white py-2 mt-4 rounded-md transition">
                                         View Details
                                     </button>

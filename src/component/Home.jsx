@@ -52,14 +52,14 @@ const Home = () => {
                 </Swiper>
 
 
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4 z-10">
-                    <h2 className="text-3xl md:text-5xl font-bold leading-tight drop-shadow-lg">
+                <div data-aos="fade-up" className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4 z-10">
+                    <h2 data-aos="fade-up" className="text-3xl md:text-5xl font-bold leading-tight drop-shadow-lg">
                         Reliable Freelance <span className='text-[#0046FF]'>MarketPlace</span>
                     </h2>
-                    <p className="mt-3 text-lg md:text-xl text-[#CBCBCB] drop-shadow-lg">
+                    <p data-aos="fade-up" className="mt-3 text-lg md:text-xl text-[#CBCBCB] drop-shadow-lg">
                         Connect with trusted professionals worldwide
                     </p>
-                    <div className="mt-6 flex gap-4 justify-center">
+                    <div data-aos="fade-up" className="mt-6 flex gap-4 justify-center">
                         <button onClick={handlebtn1} className="bg-blue-500 hover:bg-blue-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg">
                             Explore Jobs
                         </button>

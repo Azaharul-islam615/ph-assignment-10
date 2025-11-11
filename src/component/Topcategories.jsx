@@ -10,13 +10,13 @@ const TopCategories = () => {
 
     return (
         <div className="max-w-7xl mx-auto my-16 px-6 text-white">
-            <h2 className="text-3xl font-bold text-center mb-10">
+            <h2 data-aos="fade-up" className="text-3xl font-bold text-center mb-10">
                 Top  <span className='text-[#8C00FF]'> Categories</span>🔥
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+            <div data-aos="fade-up" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
                 {categories.map((cat, i) => (
-                    <div key={i} className="bg-[#1B2A4A] border border-[#2F3F63] p-4 rounded-xl flex flex-col items-center hover:border-blue-600 shadow-md hover:-translate-y-2 transition-all duration-300">
+                    <div data-aos="fade-up" key={i} className="bg-[#1B2A4A] border border-[#2F3F63] p-4 rounded-xl flex flex-col items-center hover:border-blue-600 shadow-md hover:-translate-y-2 transition-all duration-300">
                         <img src={cat.image} alt={cat.title} className="h-12 mb-3" />
                         <p className="font-semibold text-center">{cat.title}</p>
                     </div>

@@ -21,6 +21,16 @@ import { ToastContainer } from 'react-toastify';
 import Authprovider from './Context/Authprovider.jsx';
 import Privetprovider from './component/privetroute/Privetprovider.jsx';
 import Errorpage from './component/Errorpage.jsx';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import MyAddedJobs from './routes/Myaddeddjob.jsx';
+
+
+AOS.init({
+  duration: 700,
+  easing: 'ease-in-out',
+  once: false
+})
 
 const router=createBrowserRouter([
 {path:'/',Component:Homelayout,
@@ -33,7 +43,8 @@ const router=createBrowserRouter([
     {path:'/categories',element:<Privetprovider><Categories></Categories></Privetprovider>},
     {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
     {path:'/update',element:<Privetprovider><Update></Update></Privetprovider>},
-    {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>}
+    {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>},
+    {path:'/myjob',element:<Privetprovider><MyAddedJobs></MyAddedJobs></Privetprovider>}
   ]
 }
 ])

@@ -46,16 +46,16 @@ const LatestJobs = () => {
 
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
-            <h2 className="text-3xl font-bold mb-4 text-center">
+            <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-center">
                 Latest 6 <span className='text-[#8C00FF]'> Jobs</span> 
             </h2>
-            <p className="text-center text-gray-400 mb-6">
+            <p data-aos="fade-up" className="text-center text-gray-400 mb-6">
                 Discover recent job opportunities across web development,<br /> design,marketing, and more.  Stay updated <br /> and apply to trusted listings.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {jobs.map((job, i) => (
-                    <div
+                    <div data-aos="fade-up"
                         key={i}
                         className="bg-[#1B2A4A] border border-[#2F3F63] rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-blue-500 transition-all duration-300 flex flex-col justify-between"
                     >

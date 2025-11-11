@@ -1,116 +1,94 @@
-import { useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 
 const AddJob = () => {
-
-    const user = {
-        displayName: "Logged User",
-        email: "user@gmail.com",
-    };
-
-    const [category, setCategory] = useState("");
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form Submitted ✅");
-        // TODO: Send data to MongoDB using fetch()
-        // TODO: Show toast success message
-    };
-
     return (
-        <div className="max-w-4xl mx-auto px-6 py-10 font-sans ">
+        <div className="min-h-screen bg-[#0D1B3E] py-14 px-6 font-sans text-white">
 
-            {/* Page Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl shadow-lg text-center mb-10">
-                <h2 className="text-3xl font-bold flex justify-center gap-3 items-center">
+            {/* Header Section */}
+            <div className="max-w-3xl mx-auto text-center mb-12">
+                <h2 className="text-3xl font-bold text-indigo-300 flex justify-center items-center gap-3">
                     <FaPlusCircle /> Add New Job
                 </h2>
-                <p className="opacity-90 mt-2">Share a new job opportunity with others</p>
+                <p className="text-gray-400 font-semibold mt-2">
+                    Share a job opportunity for freelancers 
+                </p>
             </div>
 
-            {/* Form */}
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-2xl shadow-lg border space-y-6"
-            >
-                {/* Title */}
+            {/* Form Card */}
+            <form className="max-w-4xl mx-auto bg-[#0F2349] p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6">
+
+                {/* Job Title */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">Job Title</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">Job Title</label>
                     <input
                         type="text"
                         placeholder="Enter job title"
-                        className="w-full border rounded-lg p-3 focus:outline-blue-500"
-                        required
+                        className="w-full bg-[#091631] text-white p-3 rounded-lg border border-gray-700 focus:outline-none"
                     />
                 </div>
 
-                {/* Posted By (Auto Filled) */}
+                {/* Posted By */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">Posted By</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">Posted By</label>
                     <input
                         type="text"
-                        value={user.displayName}
+                        value="John Doe"
                         readOnly
-                        className="w-full border bg-gray-100 rounded-lg p-3"
+                        className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
                     />
                 </div>
 
-                {/* Category Dropdown */}
+                {/* Category */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">Category</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">Category</label>
                     <select
-                        className="w-full border rounded-lg p-3 focus:outline-blue-500"
-                        required
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        className="w-full bg-[#091631] text-gray-300 p-3 rounded-lg border border-gray-700"
                     >
-                        <option value="">Select Category</option>
-                        <option value="Web Development">Web Development</option>
-                        <option value="Graphics Design">Graphics Design</option>
-                        <option value="Digital Marketing">Digital Marketing</option>
-                        <option value="Data Entry">Data Entry</option>
+                        <option>Select Category</option>
+                        <option>Web Development</option>
+                        <option>Graphics Design</option>
+                        <option>Digital Marketing</option>
+                        <option>Data Entry</option>
                     </select>
                 </div>
 
                 {/* Summary */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">Summary</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">Summary</label>
                     <textarea
                         rows="4"
-                        placeholder="Short job summary"
-                        className="w-full border rounded-lg p-3 focus:outline-blue-500"
-                        required
+                        placeholder="Short job summary..."
+                        className="w-full bg-[#091631] text-gray-200 p-3 rounded-lg border border-gray-700"
                     ></textarea>
                 </div>
 
-                {/* Cover Image */}
+                {/* Image URL */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">Cover Image (URL)</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">Cover Image URL</label>
                     <input
                         type="text"
                         placeholder="https://example.com/image.jpg"
-                        className="w-full border rounded-lg p-3 focus:outline-blue-500"
-                        required
+                        className="w-full bg-[#091631] text-white p-3 rounded-lg border border-gray-700"
                     />
                 </div>
 
-                {/* User Email (Auto Filled) */}
+                {/* Email */}
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-2">User Email</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">User Email</label>
                     <input
                         type="email"
-                        value={user.email}
+                        value="user@gmail.com"
                         readOnly
-                        className="w-full border bg-gray-100 rounded-lg p-3"
+                        className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
                     />
                 </div>
 
                 {/* Submit Button */}
                 <button
-                    type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition"
+                    type="button"
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition shadow-lg"
                 >
-                    ✅ Add Job
+                     Add Job
                 </button>
             </form>
         </div>

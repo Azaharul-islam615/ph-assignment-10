@@ -83,32 +83,33 @@ const Login = () => {
 
     return (
         <div data-aos="fade-up" className="z-0 card mx-auto my-26 bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <title>ToyTopia-login</title>
-            <div className="card-body ">
-                <h1 className="text-3xl text-center font-bold">Login now!</h1>
-                <form onSubmit={handlelogin}>
-                    <fieldset className="fieldset">
-                        <label className="label text-[14px]">Email</label>
-                        <input onChange={handleEmail} type="email" name='email' className="input  rounded-xl" placeholder="Email" />
-                        <label className="label  text-[14px]">Password</label>
-                        <div className='relative'>
-                            <input type={eye ? "text" : "password"} name='password' className="input  rounded-xl" placeholder="Password" />
-                            <div onClick={showpassword}>
+            
+            <title>Freelance MarketPlac-Login</title>
+            <div data-aos="fade-up" className="card-body ">
+                <h1 data-aos="fade-up" className="text-3xl text-center font-bold text-[#0046FF]">Login now!</h1>
+                <form data-aos="fade-up" onSubmit={handlelogin}>
+                    <fieldset data-aos="fade-up" className="fieldset">
+                        <label data-aos="fade-up" className="label text-[14px]">Email</label>
+                        <input data-aos="fade-up" onChange={handleEmail} type="email" name='email' className="input  rounded-xl" placeholder="Email" />
+                        <label data-aos="fade-up" className="label  text-[14px]">Password</label>
+                        <div data-aos="fade-up" className='relative'>
+                            <input data-aos="fade-up" type={eye ? "text" : "password"} name='password' className="input  rounded-xl" placeholder="Password" />
+                            <div data-aos="fade-up" onClick={showpassword}>
                                 {
-                                    eye ? <FaEye size={16} className='absolute top-3 right-5 z-10'></FaEye> : <FaEyeSlash size={16} className='absolute top-3 right-5 z-10'></FaEyeSlash>
+                                    eye ? <FaEye size={16} className='absolute top-6 right-5 z-10'></FaEye> : <FaEyeSlash size={16} className='absolute top-3 right-5 z-10'></FaEyeSlash>
                                 }
                             </div>
                         </div>
                         {error && <p className="text-red-500 mt-2">{error}</p>}
-                        <div className='mt-1'><Link  className="link link-hover  text-[14px] ">Forgot password?</Link></div>
+                        <div data-aos="fade-up" className='mt-1'><Link  className="link link-hover  text-[14px] ">Forgot password?</Link></div>
                         <button type='submit' className="btn btn-neutral rounded-xl mt-2 text-[16px] mb-1">Login</button>
 
                     </fieldset>
-                    <h3 className='font-semibold text-[16px] text-gray-600 mt-2'>New in our web site? <Link to="/register" state={location.state} className='underline text-blue-600'>Register</Link> </h3>
+                    <h3 data-aos="fade-up" className='font-semibold text-[16px] text-gray-600 mt-2'>New in our web site? <Link to="/register" state={location.state} className='underline text-blue-600'>Register</Link> </h3>
                 </form>
-                <button onClick={handlegoogleauth} className="flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-100 hover:shadow-md transition-all duration-300">
+                <button data-aos="fade-up" onClick={handlegoogleauth} className="flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-semibold px-6 py-2 rounded-xl shadow hover:bg-gray-100 hover:shadow-md transition-all duration-300">
                     <FcGoogle className="text-2xl" />
-                    <span className='text-[15px]'> Login with Google</span>
+                    <span className='text-[15px] '> Login with Google</span>
                 </button>
 
             </div>

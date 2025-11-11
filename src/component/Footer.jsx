@@ -1,9 +1,9 @@
 const Footer = () => {
     return (
-        <footer className="bg-[#071231] text-gray-300">
+        <footer data-aos="fade-up" className="bg-[#071231] text-gray-300">
           
             <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {/* About Section */}
+              
                 <div>
                     <h3 className="text-xl font-bold text-white mb-4">Freelance MarketPlace</h3>
                     <p className="text-gray-400 text-sm">
@@ -12,7 +12,7 @@ const Footer = () => {
                     </p>
                 </div>
 
-                {/* Quick Links */}
+               
                 <div>
                     <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul className="space-y-2">
@@ -24,7 +24,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                {/* Categories */}
+               
                 <div>
                     <h4 className="text-lg font-semibold text-white mb-4">Top Categories</h4>
                     <ul className="space-y-2">
