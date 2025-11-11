@@ -5,7 +5,7 @@ import Footer from '../component/Footer';
 
 const Homelayout = () => {
     return (
-        <div className='poppins'>
+        <div className='poppins bg-[#0D1B3E]'>
             <Nav></Nav>
             <Outlet></Outlet>
             <Footer></Footer>

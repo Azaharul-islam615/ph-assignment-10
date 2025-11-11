@@ -6,8 +6,8 @@ const Nav = () => {
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
         <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">All Jobs</NavLink>
-        <NavLink className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Add a Job</NavLink>
-        <NavLink className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
+        <NavLink to="/addjob" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Add a Job</NavLink>
+        <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">My Accepted
             Tasks</NavLink>
         <NavLink to="/login" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
         <NavLink to="/register" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
