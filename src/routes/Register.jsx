@@ -43,7 +43,7 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                console.log(result)
-               
+                navigate(redirectPath, { replace: true });
 
                 e.target.reset()
             })

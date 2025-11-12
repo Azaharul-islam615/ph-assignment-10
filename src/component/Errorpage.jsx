@@ -10,7 +10,7 @@ const Errorpage = () => {
     }
     return (
         <div className='text-center'>
-            <title>ToyTia - Error404</title>
+            <title>Freelance MarketPlace-error 404</title>
             <img className='mx-auto mb-3 w-[440px] ' src={errorphoto} alt="" />
             <div>
                 <h1 className='font-semibold text-[48px]'>Oops, page not found!</h1>
