@@ -35,20 +35,20 @@ const Home = () => {
             className={`${theme === "dark"
                     ? "bg-[#0D1B3E] text-white"
                     : "bg-white text-black"
-                } transition-all duration-500`}
+                } transition-all duration-500 `}
         >
            
-            <div className="sticky top-60 z-50 flex justify-end px-4">
+            <div className="absolute top-60 right-4 z-50 flex justify-end pr-4">
                 <button
                     onClick={toggleTheme}
-                    className="rounded-full p-2 shadow-lg bg-gray-800 dark:bg-white text-white dark:text-black transition"
+                    className="rounded-full  shadow-lg bg-gray-800 dark:bg-white text-white dark:text-black transition"
                 >
                     {theme === "dark" ? <FaSun size={16} /> : <FaRegMoon size={16} />}
                 </button>
             </div>
 
           
-            <div className="relative">
+            <div className="relative ">
                 <Swiper
                     modules={[Autoplay, Pagination]}
                     spaceBetween={30}

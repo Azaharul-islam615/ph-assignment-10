@@ -46,7 +46,7 @@ const LatestJobs = () => {
 
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
-            <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-center">
+            <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-[#8C00FF] text-center">
                 Latest 6 <span className='text-[#8C00FF]'> Jobs</span> 
             </h2>
             <p data-aos="fade-up" className="text-center text-gray-400 mb-6">
