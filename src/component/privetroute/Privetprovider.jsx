@@ -10,7 +10,7 @@ const Privetprovider = ({ children }) => {
     const { user, loading } = use(AuthContext)
 
     if (loading) {
-        return <div className='w-full flex justify-center'><span className="loading loading-dots loading-xl"></span></div>
+        return <div className='w-full flex justify-center'><span className="text-white loading loading-dots loading-xl"></span></div>
     }
     if (user && user?.email) {
         return children

@@ -42,7 +42,7 @@ const router=createBrowserRouter([
     {path:'/register',Component:Register},
     {path:'/categories/:id',element:<Privetprovider><Categories></Categories></Privetprovider>},
     {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
-    {path:'/update',element:<Privetprovider><Update></Update></Privetprovider>},
+    {path:'/update/:id',element:<Privetprovider><Update></Update></Privetprovider>},
     {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>},
     {path:'/myjob',element:<Privetprovider><MyAddedJobs></MyAddedJobs></Privetprovider>}
   ]

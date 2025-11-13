@@ -1,15 +1,15 @@
 import { FaMoneyBillWave, FaClock, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-
-import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../Context/Authprovider";
 
 const Categories = () => {
-    const navigate = useNavigate()
-    const { id } = useParams(); 
+    const { user } = useContext(AuthContext); // fixed useContext
+    const { id } = useParams();
+ 
 
     const [job, setJob] = useState(null);
-    console.log(job)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/jobs/${id}`)
@@ -22,43 +22,42 @@ const Categories = () => {
     }, [id]);
 
     if (!job) {
-        return <div className="w-full flex justify-center"><span className="loading loading-spinner text-error"></span></div>
+        return (
+            <div className="w-full flex justify-center">
+                <span className="loading loading-spinner text-error"></span>
+            </div>
+        );
     }
-    
-    const handle=()=>{
-     navigate('/update')
-    }
+
     return (
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
-
             <title>Freelance MarketPlac-Categoriesdetails</title>
-            <img  data-aos="fade-up"
+
+            <img
+                data-aos="fade-up"
                 src={job.coverImage}
                 alt="Job"
-                className="w-full h-[350px] object-cover  rounded-b-2xl"
+                className="w-full h-[350px] object-cover rounded-b-2xl"
             />
 
             <div data-aos="fade-up" className="max-w-6xl mx-auto p-6 md:p-10">
-
-                
                 <h1 data-aos="fade-up" className="text-3xl md:text-4xl font-bold">
                     Professional {job.title} Needed
                 </h1>
                 <p data-aos="fade-up" className="mt-2 text-gray-300 text-lg">
-                   {job.summary}
+                    {job.summary}
                 </p>
 
-               
                 <div data-aos="fade-up" className="grid md:grid-cols-3 gap-6 mt-8">
-                    <div data-aos="fade-up" className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
+                    <div className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
                         <FaMoneyBillWave size={28} className="text-green-500" />
-                        <div> 
+                        <div>
                             <p className="font-semibold">Salary</p>
                             <span className="text-gray-300">$400 — $600</span>
                         </div>
                     </div>
 
-                    <div data-aos="fade-up" className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
+                    <div className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
                         <FaClock size={28} className="text-orange-400" />
                         <div>
                             <p className="font-semibold">Deadline</p>
@@ -66,7 +65,7 @@ const Categories = () => {
                         </div>
                     </div>
 
-                    <div data-aos="fade-up" className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
+                    <div className="flex items-center gap-3 bg-[#10224D] p-5 rounded-xl shadow">
                         <FaBriefcase size={28} className="text-blue-400" />
                         <div>
                             <p className="font-semibold">Job Category</p>
@@ -75,33 +74,24 @@ const Categories = () => {
                     </div>
                 </div>
 
-               
-                <div data-aos="fade-up" className="mt-10 bg-[#10224D] p-8 rounded-2xl shadow-lg">
-                    <h2 data-aos="fade-up" className="text-2xl font-bold mb-4">Job Description</h2>
-                    <p data-aos="fade-up" className="text-gray-300 leading-7">
-                       {job.description}
-                    </p>
+                <div className="mt-10 bg-[#10224D] p-8 rounded-2xl shadow-lg">
+                    <h2 className="text-2xl font-bold mb-4">Job Description</h2>
+                    <p className="text-gray-300 leading-7">{job.description}</p>
 
-                    
-                    <div data-aos="fade-up" className="mt-6 flex items-center gap-3 text-gray-300">
+                    <div className="mt-6 flex items-center gap-3 text-gray-300">
                         <FaMapMarkerAlt className="text-red-500" />
                         Remote — Worldwide
                     </div>
 
-                   
-                    <div data-aos="fade-up" className="mt-10 flex flex-wrap gap-4">
-                        <button className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
-                             Accept Job
-                        </button>
-                        <button onClick={handle} className="bg-yellow-500 hover:bg-yellow-600 transition px-6 py-3 rounded-lg font-semibold text-black">
-                             Update Job
-                        </button>
-                        <button className="bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-lg font-semibold">
-                             Delete Job
-                        </button>
+                    <div className="mt-10 flex flex-wrap gap-4">
+                      
+                        {user?.email !== job.userEmail && (
+                            <button className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
+                                Accept Job
+                            </button>
+                        )}
                     </div>
                 </div>
-
             </div>
         </div>
     );

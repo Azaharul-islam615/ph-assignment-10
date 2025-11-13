@@ -2,53 +2,70 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { FaPlusCircle } from "react-icons/fa";
 import { AuthContext } from "../Context/Authprovider";
+import { toast } from "react-toastify";
 
 const AddJob = () => {
-    const { user,toggle } = useContext(AuthContext);
+    const { user, toggle } = useContext(AuthContext);
 
-    // State to store form data
+   
     const [formData, setFormData] = useState({
         title: "",
         postedBy: user?.displayName || "",
         category: "",
         summary: "",
-        imageUrl: "",
-        email: user?.email || "",
-        postedAt: "", 
+        coverImage: "",
+        userEmail: user?.email || "",
+        postedAt: "",
     });
 
-   
+
     useEffect(() => {
-        const now = new Date().toISOString(); 
-        setFormData(prev => ({ ...prev, postedAt: now }));
+        const now = new Date().toISOString();
+        setFormData((prev) => ({ ...prev, postedAt: now }));
     }, []);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-
+ 
     const handleSubmit = () => {
-        axios.post("http://localhost:3000/addjob", formData)
+        if (!formData.title || !formData.category || !formData.summary || !formData.coverImage) {
+            alert("Please fill in all required fields!");
+            return;
+        }
+
+        axios
+            .post("http://localhost:3000/addjob", formData)
             .then((res) => {
-                console.log("Job added:", res.data);
-                alert("Job added successfully!");
-              
+                console.log(" Job added:", res.data);
+                
+                toast(<div>Job added successfully!</div>)
+
+                
                 setFormData({
                     title: "",
                     postedBy: user?.displayName || "",
                     category: "",
                     summary: "",
-                    imageUrl: "",
-                    email: user?.email || "",
+                    coverImage: "",
+                    userEmail: user?.email || "",
                     postedAt: new Date().toISOString(),
                 });
+            })
+            .catch((err) => {
+                toast(<p>Something went wrong!{err}</p>)
+                
             });
     };
 
     return (
-        <div className={`min-h-screen ${toggle ? "bg-white text-black" :"bg-[#0D1B3E]"} py-14 px-6 font-sans text-white`}>
+        <div
+            className={`min-h-screen ${toggle ? "bg-white text-black" : "bg-[#0D1B3E] text-white"
+                } py-14 px-6 font-sans`}
+        >
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h2 className="text-3xl font-bold text-indigo-300 flex justify-center items-center gap-3">
                     <FaPlusCircle /> Add New Job
@@ -58,10 +75,15 @@ const AddJob = () => {
                 </p>
             </div>
 
-            <form className="max-w-4xl mx-auto bg-[#0F2349] p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6">
-
+            <form
+                className={`max-w-4xl mx-auto ${toggle ? "bg-gray-100 text-black" : "bg-[#0F2349] text-white"
+                    } p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6`}
+            >
+              
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Job Title</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Job Title
+                    </label>
                     <input
                         name="title"
                         value={formData.title}
@@ -72,8 +94,11 @@ const AddJob = () => {
                     />
                 </div>
 
+                
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Posted By</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Posted By
+                    </label>
                     <input
                         name="postedBy"
                         value={formData.postedBy}
@@ -82,8 +107,11 @@ const AddJob = () => {
                     />
                 </div>
 
+                
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Category</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Category
+                    </label>
                     <select
                         name="category"
                         value={formData.category}
@@ -98,8 +126,11 @@ const AddJob = () => {
                     </select>
                 </div>
 
+                
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Summary</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Summary
+                    </label>
                     <textarea
                         name="summary"
                         value={formData.summary}
@@ -110,11 +141,14 @@ const AddJob = () => {
                     ></textarea>
                 </div>
 
+                
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Cover Image URL</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Cover Image URL
+                    </label>
                     <input
-                        name="imageUrl"
-                        value={formData.imageUrl}
+                        name="coverImage"
+                        value={formData.coverImage}
                         onChange={handleChange}
                         type="text"
                         placeholder="https://example.com/image.jpg"
@@ -122,18 +156,34 @@ const AddJob = () => {
                     />
                 </div>
 
+             
+                {formData.coverImage && (
+                    <div className="mt-3 flex justify-center">
+                        <img
+                            src={formData.coverImage}
+                            alt="Preview"
+                            className="w-64 h-40 object-cover rounded-xl border border-indigo-400 shadow-lg"
+                        />
+                    </div>
+                )}
+
+              
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">User Email</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        User Email
+                    </label>
                     <input
                         name="email"
-                        value={formData.email}
+                        value={formData.userEmail}
                         readOnly
                         className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
                     />
                 </div>
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">Posted Date / Time</label>
+                    <label className="block font-semibold mb-2 text-indigo-300">
+                        Posted Date / Time
+                    </label>
                     <input
                         name="postedAt"
                         value={formData.postedAt}
@@ -142,6 +192,7 @@ const AddJob = () => {
                     />
                 </div>
 
+               
                 <button
                     type="button"
                     onClick={handleSubmit}

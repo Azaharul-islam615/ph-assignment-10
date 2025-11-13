@@ -1,63 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
-const UpdateJobStatic = () => {
+const UpdateJob = () => {
+    const { id } = useParams();
+    const [formData, setFormData] = useState({ title: "", category: "", summary: "", coverImage: "" });
+    const formRef = useRef();
 
-    const [form, setForm] = useState({
-        title: "Frontend Developer Needed",
-        category: "Web Development",
-        summary: "Build a high-quality UI for dashboard with React & Tailwind CSS.",
-        coverImage: "https://i.ibb.co/z6VSMdD/react-job.jpg"
-    });
+    useEffect(() => {
+        axios.get(`http://localhost:3000/jobs/${id}`)
+            .then(res => {
+                setFormData(res.data);
+            })
+            .catch(err => console.error(err));
+    }, [id]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+    const handleSubmit = e => {
+        e.preventDefault();
+        const updatedJob = {
+            title: e.target.title.value,
+            category: e.target.category.value,
+            summary: e.target.summary.value,
+            coverImage: e.target.coverImage.value,
+        };
+
+        axios.patch(`http://localhost:3000/jobs/${id}`, updatedJob)
+            .then(() => {
+                alert("✅ Job updated successfully!");
+            })
+            .catch(err => console.error(err));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Static form (no update logic yet)");
+    const handleCancel = () => {
+        // Clear all input fields
+        formRef.current.reset();
     };
 
     return (
-        <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen text-white font-sans pb-20">
-
-            {/* Page Title */}
-            <div data-aos="fade-up" className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-10 text-center">
-                <h1 className="text-4xl font-bold">Update Job</h1>
-                <p className="text-gray-200 mt-2 text-lg">
-                    Edit your job information and click Update
-                </p>
-            </div>
-
-            {/* Update Form */}
-            <form data-aos="fade-up"
+        <div className="bg-[#0D1B3E] min-h-screen text-white p-10">
+            <h1 className="text-4xl font-bold mb-8">Update Job</h1>
+            <form
+                ref={formRef}
                 onSubmit={handleSubmit}
-                className="max-w-4xl mx-auto mt-10 bg-[#10224D] rounded-2xl p-8 shadow-xl border border-[#1c355f]"
+                className="max-w-4xl mx-auto bg-[#10224D] p-8 rounded-xl space-y-5"
             >
-
-                {/* Title */}
-                <label data-aos="fade-up"  className="text-gray-200 font-medium block mb-1">Job Title</label>
-                <input data-aos="fade-up"
-                    type="text"
+                <input
                     name="title"
+                    defaultValue={formData.title}
+                    placeholder="Title"
+                    className="w-full p-3 rounded bg-[#0F2A54]"
                     required
-                    value={form.title}
-                    onChange={handleChange}
-                    className="w-full bg-[#0F2A54] px-4 py-3 rounded-lg border border-[#244173]
-                    focus:ring-2 focus:ring-blue-500 outline-none mb-5"
                 />
 
-                {/* Category */}
-                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Category</label>
-                <select data-aos="fade-up"
+                <select
                     name="category"
+                    defaultValue={formData.category}
+                    className="w-full p-3 rounded bg-[#0F2A54]"
                     required
-                    value={form.category}
-                    onChange={handleChange}
-                    className="w-full bg-[#0F2A54] px-4 py-3 rounded-lg border border-[#244173] 
-                    focus:ring-2 focus:ring-blue-500 outline-none mb-5"
                 >
                     <option>Web Development</option>
                     <option>Graphics Design</option>
@@ -66,63 +66,38 @@ const UpdateJobStatic = () => {
                     <option>UI/UX Design</option>
                 </select>
 
-                {/* Summary */}
-                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Summary</label>
-                <textarea data-aos="fade-up"
+                <textarea
                     name="summary"
-                    required
+                    defaultValue={formData.summary}
                     rows="4"
-                    value={form.summary}
-                    onChange={handleChange}
-                    className="w-full bg-[#0F2A54] px-4 py-3 rounded-lg border border-[#244173] 
-                    focus:ring-2 focus:ring-blue-500 outline-none mb-5 resize-none"
-                ></textarea>
-
-                {/* Cover Image */}
-                <label data-aos="fade-up" className="text-gray-200 font-medium block mb-1">Cover Image URL</label>
-                <input data-aos="fade-up"
-                    type="text"
-                    name="coverImage"
+                    placeholder="Summary"
+                    className="w-full p-3 rounded bg-[#0F2A54]"
                     required
-                    value={form.coverImage}
-                    onChange={handleChange}
-                    className="w-full bg-[#0F2A54] px-4 py-3 rounded-lg border border-[#244173]
-                    focus:ring-2 focus:ring-blue-500 outline-none"
                 />
 
-                {/* Preview */}
-                <div data-aos="fade-up" className="w-full h-52 mt-4 border border-[#244173] rounded-lg overflow-hidden">
-                    <img data-aos="fade-up"
-                        src={form.coverImage}
-                        alt="Cover Preview"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+                <input
+                    name="coverImage"
+                    defaultValue={formData.coverImage}
+                    placeholder="Cover Image URL"
+                    className="w-full p-3 rounded bg-[#0F2A54]"
+                    required
+                />
 
-                {/* Buttons */}
-                <div data-aos="fade-up" className="flex flex-col sm:flex-row items-center gap-4 mt-10">
-
-                    {/* Submit = Update */}
-                    <button
-                        type="submit"
-                        className="bg-blue-600 hover:bg-blue-700 transition text-white w-full sm:w-auto px-7 py-3 rounded-lg font-semibold flex items-center gap-2"
-                    >
+                <div className="flex gap-4 mt-5">
+                    <button type="submit" className="bg-blue-600 px-6 py-3 rounded font-semibold flex items-center gap-2">
                         <FaCheckCircle /> Update
                     </button>
-
-                    {/* Reset Button */}
-                    <button data-aos="fade-up"
-                        type="reset"
-                        className="bg-transparent border border-red-600 hover:bg-red-600 
-                        transition text-white w-full sm:w-auto px-7 py-3 rounded-lg font-semibold flex items-center gap-2"
+                    <button
+                        type="button"
+                        onClick={handleCancel}
+                        className="bg-red-600 px-6 py-3 rounded font-semibold flex items-center gap-2"
                     >
                         <FaTimes /> Cancel
                     </button>
                 </div>
-
             </form>
         </div>
     );
 };
 
-export default UpdateJobStatic;
+export default UpdateJob;

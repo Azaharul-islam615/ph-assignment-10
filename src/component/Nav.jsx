@@ -65,18 +65,8 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user && (
-                    <div className="relative inline-block group mr-2">
-                        <img
-                            className="w-10 h-10 rounded-full"
-                            src={user.photoURL}
-                            alt={user.displayName}
-                        />
-                        <span className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 text-[10px] text-gray-800 hidden group-hover:block bg-white rounded px-1 shadow">
-                            {user.displayName}
-                        </span>
-                    </div>
-                )}
+                <input onClick={handletoggle} type="checkbox" defaultChecked className="toggle toggle-primary mr-3" />
+                
                 {user ? (
                     <button
                         onClick={handlelogout}
@@ -87,7 +77,19 @@ const Nav = () => {
                 ) : (
                         <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
                 )}
-                <input onClick={handletoggle} type="checkbox" defaultChecked className="toggle toggle-primary ml-3" />
+                {user && (
+                    <div className="relative inline-block group ml-2">
+                        <img
+                            className="w-10 h-10 rounded-full"
+                            src={user.photoURL}
+                            alt={user.displayName}
+                        />
+                        <span className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 text-[10px] text-gray-800 hidden group-hover:block bg-white rounded px-1 shadow">
+                            {user.displayName}
+                        </span>
+                    </div>
+                )}
+               
                 
             </div>
         </div>
