@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const UpdateJob = () => {
     const { id } = useParams();
@@ -27,13 +28,14 @@ const UpdateJob = () => {
 
         axios.patch(`http://localhost:3000/jobs/${id}`, updatedJob)
             .then(() => {
-                alert("✅ Job updated successfully!");
+                
+                toast(<div>✅ Job updated successfully!</div>)
             })
             .catch(err => console.error(err));
     };
 
     const handleCancel = () => {
-        // Clear all input fields
+        
         formRef.current.reset();
     };
 

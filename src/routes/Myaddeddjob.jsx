@@ -40,7 +40,8 @@ const MyAddedJobs = () => {
         axios
             .delete(`http://localhost:3000/jobs/${id}`)
             .then(() => {
-                toast.success("Job deleted successfully!");
+                
+                toast(<div>Job deleted successfully!</div>)
                 setAddJob((prev) => prev.filter((job) => job._id !== id));
             })
             .catch((err) => {

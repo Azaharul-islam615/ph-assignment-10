@@ -3,6 +3,7 @@ import {  useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/Authprovider";
+import { toast } from "react-toastify";
 
 const Categories = () => {
     const { user, addJob } = useContext(AuthContext); // fixed useContext
@@ -29,7 +30,10 @@ const Categories = () => {
             </div>
         );
     }
-   
+   const handles=()=>{
+       addJob(job)
+       toast(<div>job Accepted successfully</div>)
+   }
     return (
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
             <title>Freelance MarketPlac-Categoriesdetails</title>
@@ -87,7 +91,7 @@ const Categories = () => {
                     <div className="mt-10 flex flex-wrap gap-4">
                       
                         {user?.email !== job.userEmail && (
-                            <button onClick={() => addJob(job)} className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
+                            <button onClick={handles } className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
                                 Accept Job
                             </button>
                         )}

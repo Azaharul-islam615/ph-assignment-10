@@ -9,6 +9,9 @@ const MyAcceptedTask = () => {
     if (acceptedJobs.length === 0) {
         return <p className="text-center mt-10 text-white">No accepted jobs yet</p>;
     }
+    const handle=()=>{
+        
+    }
 
     return (
         <div className="min-h-screen p-6  text-white">
