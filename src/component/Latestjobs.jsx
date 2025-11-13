@@ -1,6 +1,19 @@
-import { useNavigate } from "react-router";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 const LatestJobs = () => {
+    const [alljobs, setAllJobs] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/jobs')
+            .then(res => {
+                setAllJobs(res.data);
+            })
+            .catch(err => {
+                console.error('Error fetching data:', err);
+            });
+    }, []);
     const navigate=useNavigate()
     const jobs = [
         {
@@ -40,10 +53,7 @@ const LatestJobs = () => {
             price: "$120"
         }
     ];
-    const handlebtn=()=>{
-        navigate('/categories')
-    }
-
+    
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
             <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-[#8C00FF] text-center">
@@ -54,34 +64,36 @@ const LatestJobs = () => {
             </p>
 
             <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {jobs.map((job, i) => (
-                    <div data-aos="fade-up"
-                        key={i}
-                        className="bg-[#1B2A4A] border border-[#2F3F63] rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:border-blue-500 transition-all duration-300 flex flex-col justify-between"
+                {alljobs.map((job) => (
+                    <div
+                        key={job._id}
+                        className="bg-[#11224E] rounded-lg shadow-lg flex flex-col justify-between hover:scale-[1.02] duration-300 border border-transparent hover:border-blue-500"
                     >
-                        <div>
-                            <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full uppercase tracking-wide">
-                                {job.category}
-                            </span>
+                        <img
+                            src={job.coverImage}
+                            alt={job.title}
+                            className="w-full h-44 object-cover "
+                        />
 
-                            <h3 className="text-xl font-semibold mt-4 mb-3 leading-snug">
-                                {job.title}
-                            </h3>
+                        <div className="p-5 flex flex-col flex-grow">
+                            <h3 className="text-xl font-bold">{job.title}</h3>
+                            <p className="text-sm text-[#b7bedf] mt-1">
+                                Category: {job.category}
+                            </p>
+                            <p className="text-sm text-[#9fb2d5] mt-1">
+                                Posted By: {job.postedBy}
+                            </p>
 
-                            <p className="text-sm text-gray-300 mb-1">
-                                 Deadline: {job.deadline}
+                            <p className="text-sm text-gray-300 mt-2 line-clamp-2 flex-grow">
+                                {job.summary}
                             </p>
-                            <p className="text-lg font-bold text-green-400">
-                                 {job.price}
-                            </p>
+
+                            <Link to={`/categories/${job._id}`} className="mt-4">
+                                <button className="bg-blue-600 hover:bg-blue-700 w-full text-white py-2 rounded-md transition font-semibold tracking-wide">
+                                    View Details
+                                </button>
+                            </Link>
                         </div>
-
-                        <button
-                        onClick={handlebtn}
-                            className="mt-6 bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-2 rounded-lg font-medium shadow-md transition-all duration-300 w-full"
-                        >
-                            View Details
-                        </button>
                     </div>
                 ))}
             </div>

@@ -40,7 +40,7 @@ const router=createBrowserRouter([
     {path:'/allapps',element:<Privetprovider><Alljobs></Alljobs></Privetprovider>},
     {path:'/login',Component:Login},
     {path:'/register',Component:Register},
-    {path:'/categories',element:<Privetprovider><Categories></Categories></Privetprovider>},
+    {path:'/categories/:id',element:<Privetprovider><Categories></Categories></Privetprovider>},
     {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
     {path:'/update',element:<Privetprovider><Update></Update></Privetprovider>},
     {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>},

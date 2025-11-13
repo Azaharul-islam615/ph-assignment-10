@@ -1,9 +1,30 @@
 import { FaMoneyBillWave, FaClock, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 import jobImg from "../assets/windows-MYomVPpR5FU-unsplash.jpg";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Categories = () => {
-    const navigate=useNavigate()
+    const navigate = useNavigate()
+    const { id } = useParams(); 
+
+    const [job, setJob] = useState(null);
+    console.log(job)
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/jobs/${id}`)
+            .then(res => {
+                setJob(res.data);
+            })
+            .catch(err => {
+                console.error('Error fetching job details:', err);
+            });
+    }, [id]);
+
+    if (!job) {
+        return <div className="w-full flex justify-center"><span className="loading loading-spinner text-error"></span></div>
+    }
+    
     const handle=()=>{
      navigate('/update')
     }
@@ -11,20 +32,20 @@ const Categories = () => {
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
 
             <title>Freelance MarketPlac-Categoriesdetails</title>
-            <img data-aos="fade-up"
-                src={jobImg}
+            <img  data-aos="fade-up"
+                src={job.coverImage}
                 alt="Job"
-                className="w-full h-[350px] object-cover rounded-b-2xl"
+                className="w-full h-[350px] object-cover  rounded-b-2xl"
             />
 
             <div data-aos="fade-up" className="max-w-6xl mx-auto p-6 md:p-10">
 
                 
                 <h1 data-aos="fade-up" className="text-3xl md:text-4xl font-bold">
-                    Professional Frontend Developer Needed
+                    Professional {job.title} Needed
                 </h1>
                 <p data-aos="fade-up" className="mt-2 text-gray-300 text-lg">
-                    Build high-quality UI & Interactions
+                   {job.summary}
                 </p>
 
                
@@ -49,7 +70,7 @@ const Categories = () => {
                         <FaBriefcase size={28} className="text-blue-400" />
                         <div>
                             <p className="font-semibold">Job Category</p>
-                            <span className="text-gray-300">Web Development</span>
+                            <span className="text-gray-300">{job.category}</span>
                         </div>
                     </div>
                 </div>
@@ -58,9 +79,7 @@ const Categories = () => {
                 <div data-aos="fade-up" className="mt-10 bg-[#10224D] p-8 rounded-2xl shadow-lg">
                     <h2 data-aos="fade-up" className="text-2xl font-bold mb-4">Job Description</h2>
                     <p data-aos="fade-up" className="text-gray-300 leading-7">
-                        We are looking for a frontend developer experienced in React & Tailwind.
-                        You will create smooth UI interactions and responsive layouts. Must understand
-                        REST APIs and Git workflow.
+                       {job.description}
                     </p>
 
                     
