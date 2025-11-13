@@ -1,5 +1,5 @@
 import { FaMoneyBillWave, FaClock, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-import jobImg from "../assets/windows-MYomVPpR5FU-unsplash.jpg";
+
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";

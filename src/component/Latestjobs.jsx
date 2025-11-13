@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const LatestJobs = () => {
     const [alljobs, setAllJobs] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/jobs')
+        axios.get('http://localhost:3000/sortedjob')
             .then(res => {
                 setAllJobs(res.data);
             })
@@ -14,45 +14,6 @@ const LatestJobs = () => {
                 console.error('Error fetching data:', err);
             });
     }, []);
-    const navigate=useNavigate()
-    const jobs = [
-        {
-            title: "React Frontend Developer Needed",
-            category: "Web Development",
-            deadline: "Nov 30, 2025",
-            price: "$150"
-        },
-        {
-            title: "Logo Design for Tech Brand",
-            category: "Graphics Design",
-            deadline: "Nov 22, 2025",
-            price: "$50"
-        },
-        {
-            title: "SEO Specialist for Website",
-            category: "Digital Marketing",
-            deadline: "Dec 10, 2025",
-            price: "$100"
-        },
-        {
-            title: "Mobile App UI Prototype",
-            category: "UI/UX Design",
-            deadline: "Nov 19, 2025",
-            price: "$80"
-        },
-        {
-            title: "Data Entry Assistant Needed",
-            category: "Admin Support",
-            deadline: "Nov 15, 2025",
-            price: "$40"
-        },
-        {
-            title: "Social Media Video Editing",
-            category: "Video Editing",
-            deadline: "Dec 01, 2025",
-            price: "$120"
-        }
-    ];
     
     return (
         <div className="max-w-7xl mx-auto my-10 px-4  text-white py-12 rounded-lg">
