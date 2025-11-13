@@ -1,5 +1,5 @@
 import { FaMoneyBillWave, FaClock, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-import {  useParams } from "react-router";
+import { useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/Authprovider";
@@ -8,13 +8,13 @@ import { toast } from "react-toastify";
 const Categories = () => {
     const { user, addJob } = useContext(AuthContext); // fixed useContext
     const { id } = useParams();
-   
+
 
     const [job, setJob] = useState(null);
-    
+
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/jobs/${id}`)
+        axios.get(`https://frelacing.vercel.app/jobs/${id}`)
             .then(res => {
                 setJob(res.data);
             })
@@ -30,10 +30,10 @@ const Categories = () => {
             </div>
         );
     }
-   const handles=()=>{
-       addJob(job)
-       toast(<div>job Accepted successfully</div>)
-   }
+    const handles = () => {
+        addJob(job)
+        toast(<div>job Accepted successfully</div>)
+    }
     return (
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
             <title>Freelance MarketPlac-Categoriesdetails</title>
@@ -89,9 +89,9 @@ const Categories = () => {
                     </div>
 
                     <div className="mt-10 flex flex-wrap gap-4">
-                      
+
                         {user?.email !== job.userEmail && (
-                            <button onClick={handles } className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
+                            <button onClick={handles} className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
                                 Accept Job
                             </button>
                         )}

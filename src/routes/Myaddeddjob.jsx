@@ -11,10 +11,10 @@ const MyAddedJobs = () => {
     const [alljobs, setAllJobs] = useState([]);
     const [addjob, setAddJob] = useState([]);
 
-    
+
     useEffect(() => {
         axios
-            .get("http://localhost:3000/jobs")
+            .get("https://frelacing.vercel.app/jobs")
             .then((res) => setAllJobs(res.data))
             .catch((err) => {
                 toast.error("Error fetching data!");
@@ -22,7 +22,7 @@ const MyAddedJobs = () => {
             });
     }, []);
 
-   
+
     useEffect(() => {
         if (user?.email && alljobs.length > 0) {
             const result = alljobs.filter((job) => job.userEmail === user.email);
@@ -30,17 +30,17 @@ const MyAddedJobs = () => {
         }
     }, [user, alljobs]);
 
-    
+
     const handleUpdate = (id) => {
         navigate(`/update/${id}`);
     };
 
-    
+
     const handleDelete = (id) => {
         axios
-            .delete(`http://localhost:3000/jobs/${id}`)
+            .delete(`https://frelacing.vercel.app/jobs/${id}`)
             .then(() => {
-                
+
                 toast(<div>Job deleted successfully!</div>)
                 setAddJob((prev) => prev.filter((job) => job._id !== id));
             })

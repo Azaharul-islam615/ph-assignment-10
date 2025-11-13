@@ -5,10 +5,10 @@ import { AuthContext } from "../Context/Authprovider";
 
 const AllJobs = () => {
     const [alljobs, setAllJobs] = useState([]);
-    const {toggle}=use(AuthContext)
+    const { toggle } = use(AuthContext)
 
     useEffect(() => {
-        axios.get('http://localhost:3000/jobs')
+        axios.get('https://frelacing.vercel.app/jobs')
             .then(res => {
                 setAllJobs(res.data);
             })
@@ -21,7 +21,7 @@ const AllJobs = () => {
         <div data-aos="fade-up" className=" min-h-screen py-16 text-white">
             <title>Freelance MarketPlac-alljobs</title>
             <div data-aos="fade-up" className="max-w-7xl mx-auto px-6">
-                <h2 className={`text-3xl md:text-4xl ${toggle?"text-black":"text-white"} font-bold text-center mb-6`}>
+                <h2 className={`text-3xl md:text-4xl ${toggle ? "text-black" : "text-white"} font-bold text-center mb-6`}>
                     Explore <span className='text-[#8C00FF]'>All Jobs</span>
                 </h2>
                 <p className="text-center mb-4 text-gray-400">
@@ -35,7 +35,7 @@ const AllJobs = () => {
                         <div
                             key={job._id}
                             className="bg-[#11224E] rounded-lg shadow-lg flex flex-col justify-between hover:scale-[1.02] duration-300 border border-transparent hover:border-blue-500"
-                         >
+                        >
                             <img
                                 src={job.coverImage}
                                 alt={job.title}

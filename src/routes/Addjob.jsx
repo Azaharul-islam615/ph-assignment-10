@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const AddJob = () => {
     const { user, toggle } = useContext(AuthContext);
 
-   
+
     const [formData, setFormData] = useState({
         title: "",
         postedBy: user?.displayName || "",
@@ -30,7 +30,7 @@ const AddJob = () => {
         setFormData({ ...formData, [name]: value });
     };
 
- 
+
     const handleSubmit = () => {
         if (!formData.title || !formData.category || !formData.summary || !formData.coverImage) {
             alert("Please fill in all required fields!");
@@ -38,13 +38,13 @@ const AddJob = () => {
         }
 
         axios
-            .post("http://localhost:3000/addjob", formData)
+            .post("https://frelacing.vercel.app/addjob", formData)
             .then((res) => {
                 console.log(" Job added:", res.data);
-                
+
                 toast(<div>Job added successfully!</div>)
 
-                
+
                 setFormData({
                     title: "",
                     postedBy: user?.displayName || "",
@@ -57,7 +57,7 @@ const AddJob = () => {
             })
             .catch((err) => {
                 toast(<p>Something went wrong!{err}</p>)
-                
+
             });
     };
 
@@ -79,7 +79,7 @@ const AddJob = () => {
                 className={`max-w-4xl mx-auto ${toggle ? "bg-gray-100 text-black" : "bg-[#0F2349] text-white"
                     } p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6`}
             >
-              
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Job Title
@@ -94,7 +94,7 @@ const AddJob = () => {
                     />
                 </div>
 
-                
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Posted By
@@ -107,7 +107,7 @@ const AddJob = () => {
                     />
                 </div>
 
-                
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Category
@@ -126,7 +126,7 @@ const AddJob = () => {
                     </select>
                 </div>
 
-                
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Summary
@@ -141,7 +141,7 @@ const AddJob = () => {
                     ></textarea>
                 </div>
 
-                
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Cover Image URL
@@ -156,7 +156,7 @@ const AddJob = () => {
                     />
                 </div>
 
-             
+
                 {formData.coverImage && (
                     <div className="mt-3 flex justify-center">
                         <img
@@ -167,7 +167,7 @@ const AddJob = () => {
                     </div>
                 )}
 
-              
+
                 <div>
                     <label className="block font-semibold mb-2 text-indigo-300">
                         User Email
@@ -192,7 +192,7 @@ const AddJob = () => {
                     />
                 </div>
 
-               
+
                 <button
                     type="button"
                     onClick={handleSubmit}

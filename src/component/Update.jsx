@@ -10,7 +10,7 @@ const UpdateJob = () => {
     const formRef = useRef();
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/jobs/${id}`)
+        axios.get(`https://frelacing.vercel.app/jobs/${id}`)
             .then(res => {
                 setFormData(res.data);
             })
@@ -26,16 +26,16 @@ const UpdateJob = () => {
             coverImage: e.target.coverImage.value,
         };
 
-        axios.patch(`http://localhost:3000/jobs/${id}`, updatedJob)
+        axios.patch(`https://frelacing.vercel.app/jobs/${id}`, updatedJob)
             .then(() => {
-                
+
                 toast(<div>✅ Job updated successfully!</div>)
             })
             .catch(err => console.error(err));
     };
 
     const handleCancel = () => {
-        
+
         formRef.current.reset();
     };
 
