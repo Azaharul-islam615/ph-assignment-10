@@ -1,15 +1,16 @@
 import { FaMoneyBillWave, FaClock, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-import { useParams } from "react-router";
+import {  useParams } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/Authprovider";
 
 const Categories = () => {
-    const { user } = useContext(AuthContext); // fixed useContext
+    const { user, addJob } = useContext(AuthContext); // fixed useContext
     const { id } = useParams();
- 
+   
 
     const [job, setJob] = useState(null);
+    
 
     useEffect(() => {
         axios.get(`http://localhost:3000/jobs/${id}`)
@@ -28,7 +29,7 @@ const Categories = () => {
             </div>
         );
     }
-
+   
     return (
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
             <title>Freelance MarketPlac-Categoriesdetails</title>
@@ -86,7 +87,7 @@ const Categories = () => {
                     <div className="mt-10 flex flex-wrap gap-4">
                       
                         {user?.email !== job.userEmail && (
-                            <button className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
+                            <button onClick={() => addJob(job)} className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
                                 Accept Job
                             </button>
                         )}

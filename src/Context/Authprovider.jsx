@@ -8,7 +8,21 @@ const Authprovider = ({children}) => {
     const [loading, setloading] = useState(true)
     const [user, setUser] = useState(null)
     const [toggle,setToggle]=useState(null)
-    console.log(user)
+    const [acceptedJobs, setAcceptedJobs] = useState([]);
+
+
+    const addJob = (job) => {
+       
+        const exists = acceptedJobs.find((j) => j._id === job._id);
+        if (!exists) {
+            setAcceptedJobs((prev) => [...prev, job]);
+        }
+    };
+
+    const removeJob = (jobId) => {
+        setAcceptedJobs((prev) => prev.filter((job) => job._id !== jobId));
+    };
+   
     const createUser = (email, password) => {
         setloading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -49,7 +63,11 @@ const Authprovider = ({children}) => {
         googleauth,
         toggle,
         setToggle,
-        updateuserprofile
+        updateuserprofile,
+        acceptedJobs,
+        setAcceptedJobs,
+        addJob,
+        removeJob
       
        
     }

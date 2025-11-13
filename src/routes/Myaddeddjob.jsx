@@ -11,7 +11,7 @@ const MyAddedJobs = () => {
     const [alljobs, setAllJobs] = useState([]);
     const [addjob, setAddJob] = useState([]);
 
-    // Fetch all jobs
+    
     useEffect(() => {
         axios
             .get("http://localhost:3000/jobs")
@@ -22,7 +22,7 @@ const MyAddedJobs = () => {
             });
     }, []);
 
-    // Filter jobs added by the current user
+   
     useEffect(() => {
         if (user?.email && alljobs.length > 0) {
             const result = alljobs.filter((job) => job.userEmail === user.email);
@@ -30,7 +30,7 @@ const MyAddedJobs = () => {
         }
     }, [user, alljobs]);
 
-    // Navigate to update page
+    
     const handleUpdate = (id) => {
         navigate(`/update/${id}`);
     };
