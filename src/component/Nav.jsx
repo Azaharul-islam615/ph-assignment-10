@@ -6,7 +6,11 @@ import { toast } from 'react-toastify';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const Nav = () => {
-    const { user, logout } = use(AuthContext);
+    const { user, logout,setToggle,toggle } = use(AuthContext);
+    console.log(user)
+    const handletoggle=()=>{
+        setToggle(!toggle)
+    }
     const handlelogout = () => {
         logout()
             .then(() => {
@@ -83,6 +87,7 @@ const Nav = () => {
                 ) : (
                         <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
                 )}
+                <input onClick={handletoggle} type="checkbox" defaultChecked className="toggle toggle-primary ml-3" />
                 
             </div>
         </div>

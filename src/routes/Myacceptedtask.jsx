@@ -12,7 +12,7 @@ const Myacceptedtask = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0D1B3E] text-white py-10 px-4 font-sans">
+        <div className="min-h-screen  text-white py-10 px-4 font-sans">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-[#2E8A99] mb-10">
                  My Accepted Tasks
             </h2>

@@ -4,7 +4,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { AuthContext } from "../Context/Authprovider";
 
 const AddJob = () => {
-    const { user } = useContext(AuthContext);
+    const { user,toggle } = useContext(AuthContext);
 
     // State to store form data
     const [formData, setFormData] = useState({
@@ -48,7 +48,7 @@ const AddJob = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0D1B3E] py-14 px-6 font-sans text-white">
+        <div className={`min-h-screen ${toggle ? "bg-white text-black" :"bg-[#0D1B3E]"} py-14 px-6 font-sans text-white`}>
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h2 className="text-3xl font-bold text-indigo-300 flex justify-center items-center gap-3">
                     <FaPlusCircle /> Add New Job

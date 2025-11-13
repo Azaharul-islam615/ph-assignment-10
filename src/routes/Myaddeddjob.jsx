@@ -28,7 +28,7 @@ const MyAddedJobs = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#0D1B3E] p-6 font-sans text-white">
+        <div className="min-h-screen p-6 font-sans text-white">
             <h2 className="text-3xl font-bold text-center text-indigo-400 mb-8">
                  My Added Jobs
             </h2>

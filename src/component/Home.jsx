@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import { useState, useEffect } from "react";
+
 import { FaRegMoon, FaSun } from "react-icons/fa";
 import { motion } from "framer-motion"; 
 import { useNavigate } from "react-router";
@@ -19,34 +19,14 @@ import img4 from "../assets/faizur-rehman-pHPzdEHN6Os-unsplash.jpg";
 
 const Home = () => {
     const navigate = useNavigate();
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
-
-    useEffect(() => {
-        document.documentElement.classList.toggle("dark", theme === "dark");
-        localStorage.setItem("theme", theme);
-    }, [theme]);
-
-    const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+    
     const handlebtn1 = () => navigate("/allapps");
     const handlebtn2 = () => navigate("/addjob");
 
     return (
-        <div
-            className={`${theme === "dark"
-                    ? "bg-[#0D1B3E] text-white"
-                    : "bg-white text-black"
-                } transition-all duration-500 `}
-        >
+        <div >
            
-            <div className="absolute top-60 right-4 z-50 flex justify-end pr-4">
-                <button
-                    onClick={toggleTheme}
-                    className="rounded-full  shadow-lg bg-gray-800 dark:bg-white text-white dark:text-black transition"
-                >
-                    {theme === "dark" ? <FaSun size={16} /> : <FaRegMoon size={16} />}
-                </button>
-            </div>
-
+            
           
             <div className="relative ">
                 <Swiper
@@ -82,11 +62,11 @@ const Home = () => {
                     transition={{ duration: 1.2 }}
                     className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold drop-shadow-lg">
-                        Reliable Freelance{" "}
-                        <span className="text-[#0046FF]">MarketPlace</span>
+                    <h2 className="text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
+                        Reliable Freelance 
+                        <span className="text-[#0046FF] ml-2">MarketPlace</span>
                     </h2>
-                    <p className="mt-3 text-lg md:text-xl drop-shadow-lg">
+                    <p className="mt-3 text-lg md:text-xl text-gray-400 drop-shadow-lg">
                         Connect with trusted professionals worldwide
                     </p>
                     <div className="mt-6 flex gap-4 justify-center">

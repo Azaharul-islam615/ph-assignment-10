@@ -12,7 +12,7 @@ const Register = () => {
     const [error, seterror] = useState(false)
     const [eye, seteye] = useState("")
 
-    const { createUser, setUser,  googleauth } = use(AuthContext)
+    const { createUser, setUser, googleauth, updateuserprofile } = use(AuthContext)
     const redirectPath = location.state?.from || '/';
     const handleregister = (e) => {
         e.preventDefault()
@@ -42,8 +42,13 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
-               console.log(result)
-                navigate(redirectPath, { replace: true });
+                const user = result.user
+                updateuserprofile({ displayName: name, photoURL: photo }).then(() => {
+                    setUser({ ...user, displayName: name, photoURL: photo })
+                    navigate(redirectPath, { replace: true });
+                }).catch(err => {
+                    toast(<div>{err.message}</div>)
+                })
 
                 e.target.reset()
             })
