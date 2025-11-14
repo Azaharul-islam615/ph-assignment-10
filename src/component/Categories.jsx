@@ -9,7 +9,7 @@ const Categories = () => {
     const { user, addJob } = useContext(AuthContext); // fixed useContext
     const { id } = useParams();
 
-
+    console.log(id)
     const [job, setJob] = useState(null);
 
 

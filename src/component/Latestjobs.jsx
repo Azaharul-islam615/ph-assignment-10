@@ -8,6 +8,7 @@ const LatestJobs = () => {
     useEffect(() => {
         axios.get('https://frelacing.vercel.app/sortedjob')
             .then(res => {
+                console.log(res)
                 setAllJobs(res.data);
             })
             .catch(err => {
