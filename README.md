@@ -1,7 +1,7 @@
 #  Freelance MarketPlace
 
 ### 🌐 Live Site:
- [https://your-live-site-url.netlify.app](https://your-live-site-url.netlify.app)  
+[https://your-live-site-url.netlify.app](https://your-live-site-url.netlify.app)](https://exquisite-smakager-ae5a74.netlify.app/)  
 ### 💻 Server (API) Live URL:
  [https://your-server.vercel.app](https://your-server.vercel.app)  
 
