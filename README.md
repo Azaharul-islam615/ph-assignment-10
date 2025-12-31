@@ -8,9 +8,10 @@
 ---
 
 ## 🧩 Project Overview (প্রকল্প সারসংক্ষেপ)
-**Freelance MarketPlace** হলো একটি পূর্ণাঙ্গ ফুল-স্ট্যাক ওয়েব অ্যাপ্লিকেশন যেখানে ব্যবহারকারীরা জব বা টাস্ক **Add, Read, Update, Delete (CRUD)** করতে পারে।  
-অন্য ব্যবহারকারীরা তাদের পোস্ট করা জব “Accept” করতে পারবে এবং সেই জব `My Accepted Tasks` পেজে প্রদর্শিত হবে।  
-এটি তৈরি করা হয়েছে **React (Vite)**, **Node.js + Express.js**, **MongoDB Atlas**, এবং **Firebase Authentication** ব্যবহার করে।
+Freelance MarketPlace is a full-stack web application where users can Add, Read, Update,
+and Delete (CRUD) jobs or tasks. Other users can accept jobs posted by others, 
+which will then appear on the “My Accepted Tasks” page. The application is built using React (Vite),
+Node.js + Express.js, MongoDB Atlas, and Firebase Authentication.
 
 ---
 
