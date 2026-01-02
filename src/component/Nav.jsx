@@ -28,7 +28,10 @@ const Nav = () => {
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
         <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AllJobs</NavLink>
-        
+        <NavLink to='/contact' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Contact</NavLink>
+        <NavLink to='/aboutus' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AboutUs</NavLink>
+       
+       
         {
             user && <>
                 <NavLink to="/myjob" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AddedJobs</NavLink>
@@ -36,12 +39,11 @@ const Nav = () => {
                 <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]"> AcceptedTasks</NavLink>
             </>
         }
-        <NavLink to="/login" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Login</NavLink>
-        <NavLink to="/register" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Register</NavLink>
+       
        
     </>
     return (
-        <div data-aos="fade-up" className="navbar  shadow-sm bg-[#11224E] text-white">
+        <div  className="navbar fixed top-0 z-10  shadow-sm bg-[#11224E] text-white">
             <div className="navbar-start">
                 <div className="dropdown relative">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -75,9 +77,10 @@ const Nav = () => {
                     >
                         Logout
                     </button>
-                ) : (
-                        <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black">Login</Link>
-                )}
+                ) : <>
+                        <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 mr-2 hover:text-white">Login</Link>
+                        <Link to="/register" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 hover:text-white">Register</Link>
+                    </>}
                 {user && (
                     <div className="relative inline-block group ml-2">
                         <img

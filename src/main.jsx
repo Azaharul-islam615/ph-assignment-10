@@ -24,6 +24,8 @@ import Errorpage from './component/Errorpage.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import MyAddedJobs from './routes/Myaddeddjob.jsx';
+import Contact from './component/Contact.jsx';
+import AboutUs from './component/AboutUs.jsx';
 
 
 AOS.init({
@@ -40,7 +42,11 @@ const router=createBrowserRouter([
     {path:'/allapps',element:<Privetprovider><Alljobs></Alljobs></Privetprovider>},
     {path:'/login',Component:Login},
     {path:'/register',Component:Register},
-    {path:'/categories/:id',element:<Privetprovider><Categories></Categories></Privetprovider>},
+    {path:'/contact',
+      Component:Contact
+    },
+    {path:'/aboutus',Component:AboutUs},
+    {path:'/categories/:id',element:<Categories></Categories>},
     {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
     {path:'/update/:id',element:<Privetprovider><Update></Update></Privetprovider>},
     {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>},
