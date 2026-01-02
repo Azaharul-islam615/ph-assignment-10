@@ -62,29 +62,29 @@ const AddJob = () => {
     };
 
     return (
-        <div
+        <div data-aos="fade-up"
             className={`min-h-screen ${toggle ? "bg-white text-black" : "bg-[#0D1B3E] text-white"
                 } py-14 px-6 font-sans`}
         >
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div data-aos="fade-up" className="max-w-3xl mx-auto text-center mb-12">
                 <h2 className="text-3xl font-bold text-indigo-300 flex justify-center items-center gap-3">
                     <FaPlusCircle /> Add New Job
                 </h2>
-                <p className="text-gray-400 font-semibold mt-2">
+                <p data-aos="fade-up" className="text-gray-400 font-semibold mt-2">
                     Share a job opportunity for freelancers
                 </p>
             </div>
 
-            <form
+            <form data-aos="fade-up"
                 className={`max-w-4xl mx-auto ${toggle ? "bg-gray-100 text-black" : "bg-[#0F2349] text-white"
                     } p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6`}
             >
 
-                <div>
+                <div data-aos="fade-up">
                     <label className="block font-semibold mb-2 text-indigo-300">
                         Job Title
                     </label>
-                    <input
+                    <input data-aos="fade-up"
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
@@ -95,11 +95,11 @@ const AddJob = () => {
                 </div>
 
 
-                <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                <div data-aos="fade-up">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         Posted By
                     </label>
-                    <input
+                    <input data-aos="fade-up"
                         name="postedBy"
                         value={formData.postedBy}
                         readOnly
@@ -109,10 +109,10 @@ const AddJob = () => {
 
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         Category
                     </label>
-                    <select
+                    <select data-aos="fade-up"
                         name="category"
                         value={formData.category}
                         onChange={handleChange}
@@ -128,10 +128,10 @@ const AddJob = () => {
 
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         Summary
                     </label>
-                    <textarea
+                    <textarea data-aos="fade-up"
                         name="summary"
                         value={formData.summary}
                         onChange={handleChange}
@@ -143,10 +143,10 @@ const AddJob = () => {
 
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         Cover Image URL
                     </label>
-                    <input
+                    <input data-aos="fade-up"
                         name="coverImage"
                         value={formData.coverImage}
                         onChange={handleChange}
@@ -158,7 +158,7 @@ const AddJob = () => {
 
 
                 {formData.coverImage && (
-                    <div className="mt-3 flex justify-center">
+                    <div data-aos="fade-up" className="mt-3 flex justify-center">
                         <img
                             src={formData.coverImage}
                             alt="Preview"
@@ -169,10 +169,10 @@ const AddJob = () => {
 
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         User Email
                     </label>
-                    <input
+                    <input data-aos="fade-up"
                         name="email"
                         value={formData.userEmail}
                         readOnly
@@ -181,10 +181,10 @@ const AddJob = () => {
                 </div>
 
                 <div>
-                    <label className="block font-semibold mb-2 text-indigo-300">
+                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
                         Posted Date / Time
                     </label>
-                    <input
+                    <input data-aos="fade-up"
                         name="postedAt"
                         value={formData.postedAt}
                         readOnly
@@ -193,7 +193,7 @@ const AddJob = () => {
                 </div>
 
 
-                <button
+                <button data-aos="fade-up"
                     type="button"
                     onClick={handleSubmit}
                     className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition shadow-lg"

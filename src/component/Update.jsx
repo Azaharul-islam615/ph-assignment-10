@@ -40,14 +40,14 @@ const UpdateJob = () => {
     };
 
     return (
-        <div className="bg-[#0D1B3E] min-h-screen text-white p-10">
-            <h1 className="text-4xl font-bold mb-8">Update Job</h1>
-            <form
+        <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen text-white p-10">
+            <h1 data-aos="fade-up" className="text-4xl font-bold mb-8">Update Job</h1>
+            <form data-aos="fade-up"
                 ref={formRef}
                 onSubmit={handleSubmit}
                 className="max-w-4xl mx-auto bg-[#10224D] p-8 rounded-xl space-y-5"
             >
-                <input
+                <input data-aos="fade-up"
                     name="title"
                     defaultValue={formData.title}
                     placeholder="Title"
@@ -55,7 +55,7 @@ const UpdateJob = () => {
                     required
                 />
 
-                <select
+                <select data-aos="fade-up"
                     name="category"
                     defaultValue={formData.category}
                     className="w-full p-3 rounded bg-[#0F2A54]"
@@ -68,7 +68,7 @@ const UpdateJob = () => {
                     <option>UI/UX Design</option>
                 </select>
 
-                <textarea
+                <textarea data-aos="fade-up"
                     name="summary"
                     defaultValue={formData.summary}
                     rows="4"
@@ -77,7 +77,7 @@ const UpdateJob = () => {
                     required
                 />
 
-                <input
+                <input data-aos="fade-up"
                     name="coverImage"
                     defaultValue={formData.coverImage}
                     placeholder="Cover Image URL"
@@ -85,11 +85,11 @@ const UpdateJob = () => {
                     required
                 />
 
-                <div className="flex gap-4 mt-5">
+                <div data-aos="fade-up" className="flex gap-4 mt-5">
                     <button type="submit" className="bg-blue-600 px-6 py-3 rounded font-semibold flex items-center gap-2">
                         <FaCheckCircle /> Update
                     </button>
-                    <button
+                    <button data-aos="fade-up"
                         type="button"
                         onClick={handleCancel}
                         className="bg-red-600 px-6 py-3 rounded font-semibold flex items-center gap-2"

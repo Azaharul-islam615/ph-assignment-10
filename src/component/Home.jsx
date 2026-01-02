@@ -28,7 +28,7 @@ const Home = () => {
            
             
           
-            <div className="relative ">
+            <div data-aos="fade-up" className="relative ">
                 <Swiper
                     modules={[Autoplay, Pagination]}
                     spaceBetween={30}
@@ -62,21 +62,21 @@ const Home = () => {
                     transition={{ duration: 1.2 }}
                     className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10"
                 >
-                    <h2 className="text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
+                    <h2 data-aos="fade-up" className="text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
                         Reliable Freelance 
-                        <span className="text-[#0046FF] ml-2">MarketPlace</span>
+                        <span data-aos="fade-up" className="text-[#0046FF] ml-2">MarketPlace</span>
                     </h2>
-                    <p className="mt-3 text-lg md:text-xl text-gray-400 drop-shadow-lg">
+                    <p data-aos="fade-up" className="mt-3 text-lg md:text-xl text-gray-400 drop-shadow-lg">
                         Connect with trusted professionals worldwide
                     </p>
                     <div className="mt-6 flex gap-4 justify-center">
-                        <button
+                        <button data-aos="fade-up"
                             onClick={handlebtn1}
                             className="bg-blue-500 hover:bg-blue-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg"
                         >
                             Explore Jobs
                         </button>
-                        <button
+                        <button data-aos="fade-up"
                             onClick={handlebtn2}
                             className="bg-green-500 hover:bg-green-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg"
                         >

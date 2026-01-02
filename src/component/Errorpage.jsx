@@ -9,7 +9,7 @@ const Errorpage = () => {
         navigate('/')
     }
     return (
-        <div className='text-center'>
+        <div data-aos="fade-up" className='text-center'>
             <title>Freelance MarketPlace-error 404</title>
             <img className='mx-auto mb-3 w-[440px] ' src={errorphoto} alt="" />
             <div>
