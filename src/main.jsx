@@ -39,7 +39,7 @@ const router=createBrowserRouter([
     errorElement: <Errorpage></Errorpage>,
   children:[
     {index:true,Component:Home},
-    {path:'/allapps',element:<Privetprovider><Alljobs></Alljobs></Privetprovider>},
+    {path:'/allapps',element:<Alljobs></Alljobs>},
     {path:'/login',Component:Login},
     {path:'/register',Component:Register},
     {path:'/contact',

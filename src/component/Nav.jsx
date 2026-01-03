@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import img from"../assets/web.webp"
 import { AuthContext } from '../Context/Authprovider';
@@ -7,16 +7,17 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 const Nav = () => {
     const { user, logout,setToggle,toggle } = use(AuthContext);
-    console.log(user)
+    const [openProfile, setOpenProfile] = useState(false);
     const handletoggle=()=>{
         setToggle(!toggle)
     }
     const handlelogout = () => {
         logout()
             .then(() => {
+                setOpenProfile(false);
                 toast(
                     <div className="flex items-center gap-2">
-                        <FaCheckCircle size={20} color="green" />
+                        <FaCheckCircle size={20} color="blue" />
                         Logout successfully!
                     </div>
                 );
@@ -28,6 +29,7 @@ const Nav = () => {
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
         <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AllJobs</NavLink>
+        <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]"> AcceptedTasks</NavLink>
         <NavLink to='/contact' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Contact</NavLink>
         <NavLink to='/aboutus' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AboutUs</NavLink>
        
@@ -36,7 +38,7 @@ const Nav = () => {
             user && <>
                 <NavLink to="/myjob" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AddedJobs</NavLink>
                 <NavLink to="/addjob" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">AddJob</NavLink>
-                <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]"> AcceptedTasks</NavLink>
+               
             </>
         }
        
@@ -73,24 +75,51 @@ const Nav = () => {
                 {user ? (
                     <button
                         onClick={handlelogout}
-                        className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
+                        className="btn hidden md:block text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
                     >
                         Logout
                     </button>
                 ) : <>
-                        <Link to="/login" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 mr-2 hover:text-white">Login</Link>
-                        <Link to="/register" className="btn text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 hover:text-white">Register</Link>
+                        <Link to="/login" className="btn rounded-lg text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 mr-2 hover:text-white">Login</Link>
+                        <Link to="/register" className="btn rounded-lg text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 hover:text-white">Register</Link>
                     </>}
                 {user && (
-                    <div className="relative inline-block group ml-2">
-                        <img
-                            className="w-10 h-10 rounded-full"
-                            src={user.photoURL}
-                            alt={user.displayName}
-                        />
-                        <span className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 text-[10px] text-gray-800 hidden group-hover:block bg-white rounded px-1 shadow">
-                            {user.displayName}
-                        </span>
+                    <div className="relative ml-1">
+                        {/* Profile Image */}
+                        <div
+                            onClick={() => setOpenProfile(!openProfile)}
+                            className="rounded-full overflow-hidden w-12 h-12 cursor-pointer border-2 border-indigo-500"
+                        >
+                            <img
+                                src={user.photoURL}
+                                alt=""
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+
+                        {/* Dropdown */}
+                        {openProfile && (
+                            <div className="absolute right-0 mt-2 w-44 bg-[#050E3C] text-white rounded-lg shadow-lg z-50 p-3">
+                                <p className="font-semibold border-b border-gray-600 pb-1">
+                                    {user.displayName}
+                                </p>
+
+                                <Link
+                                    to="/dashboard"
+                                    className="block mt-2 hover:text-blue-400"
+                                    onClick={() => setOpenProfile(false)}
+                                >
+                                    Dashboard
+                                </Link>
+
+                                <button
+                                    onClick={handlelogout}
+                                    className="mt-2 w-full text-left hover:text-red-400"
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
                

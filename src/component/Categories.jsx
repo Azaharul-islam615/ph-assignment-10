@@ -58,7 +58,7 @@ const Categories = () => {
                         <FaMoneyBillWave size={28} className="text-green-500" />
                         <div>
                             <p className="font-semibold">Salary</p>
-                            <span className="text-gray-300">$400 — $600</span>
+                            <span className="text-gray-300">{job.price} $</span>
                         </div>
                     </div>
 

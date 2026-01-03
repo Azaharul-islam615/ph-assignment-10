@@ -1,72 +1,134 @@
 import axios from "axios";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Context/Authprovider";
+import { FaSearch } from "react-icons/fa";
+import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 
 const AllJobs = () => {
-    const [alljobs, setAllJobs] = useState([]);
-    const { toggle } = use(AuthContext)
+  const limit = 10;
+  const [total, setTotal] = useState(0);
+  const [totalpage, setTotalpage] = useState(0);
+  const [currentpage, setCurrentpage] = useState(0);
+  const [alljobs, setAllJobs] = useState([]);
+  const { toggle } = useContext(AuthContext);
 
-    useEffect(() => {
-        axios.get('https://frelacing.vercel.app/jobs')
-            .then(res => {
-                setAllJobs(res.data);
-            })
-            .catch(err => {
-                console.error('Error fetching data:', err);
-            });
-    }, []);
+  useEffect(() => {
+    axios
+      .get(
+        `https://frelacing.vercel.app/jobs?limit=${limit}&skip=${
+          currentpage * limit
+        }`
+      )
+      .then((res) => {
+        setAllJobs(res.data.result); 
+        setTotal(res.data.total);
+        setTotalpage(Math.ceil(res.data.total / limit));
+      })
+      .catch((err) => console.error(err));
+  }, [currentpage]);
 
-    return (
-        <div data-aos="fade-up" className=" min-h-screen py-16 text-white">
-            <title>Freelance MarketPlac-alljobs</title>
-            <div data-aos="fade-up" className="max-w-7xl mx-auto px-6">
-                <h2 data-aos="fade-up" className={`text-3xl md:text-4xl ${toggle ? "text-black" : "text-white"} font-bold text-center mb-6`}>
-                    Explore <span className='text-[#8C00FF]'>All Jobs</span>
-                </h2>
-                <p data-aos="fade-up" className="text-center mb-4 text-gray-400">
-                    Discover countless job opportunities posted by trusted clients worldwide. <br />
-                    Browse, apply, and start working on the tasks that match your <br />
-                    skills — all in one reliable platform.
+  return (
+    <div className="min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2
+          className={`text-3xl mt-16 mb-2 md:text-4xl font-bold text-center ${
+            toggle ? "text-black" : "text-white"
+          }`}
+        >
+          Explore <span className="text-[#8C00FF]">All Jobs</span>
+        </h2>
+
+        <p className="text-center mb-6 text-gray-400">
+          Browse jobs posted by trusted clients and start working instantly.
+        </p>
+
+        {/* Search */}
+        <div className="w-full relative flex justify-center mb-6">
+          <input
+            type="search"
+            placeholder="Search jobs..."
+            className="border rounded-lg px-4 py-2 w-full md:w-[40%]"
+          />
+          <FaSearch className="absolute right-4 md:right-[32%] top-3 text-gray-400" />
+        </div>
+
+        {/* Jobs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {alljobs.map((job) => (
+            <div
+              key={job._id}
+              className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+            >
+              <img
+                src={job.coverImage}
+                alt={job.title}
+                className="w-full h-40 object-cover hover:scale-110 transition duration-500"
+              />
+
+              <div className="p-4 flex flex-col h-full">
+                <h3 className="text-lg font-bold text-gray-800">
+                  {job.title}
+                </h3>
+
+                <p className="text-sm text-gray-600 mt-1">
+                  Category: {job.category}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Salary: ${job.price}
                 </p>
 
-                <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {alljobs.map((job) => (
-                        <div data-aos="fade-up"
-                            key={job._id}
-                            className="bg-[#11224E] rounded-lg shadow-lg flex flex-col justify-between hover:scale-[1.02] duration-300 border border-transparent hover:border-blue-500"
-                        >
-                            <img data-aos="fade-up"
-                                src={job.coverImage}
-                                alt={job.title}
-                                className="w-full h-44 object-cover"
-                            />
+                <p className="text-sm text-gray-500 mt-2 line-clamp-2 flex-grow">
+                  {job.summary}
+                </p>
 
-                            <div data-aos="fade-up" className="p-5 flex flex-col flex-grow">
-                                <h3 className="text-xl font-bold">{job.title}</h3>
-                                <p className="text-sm text-[#b7bedf] mt-1">
-                                    Category: {job.category}
-                                </p>
-                                <p data-aos="fade-up" className="text-sm text-[#9fb2d5] mt-1">
-                                    Posted By: {job.postedBy}
-                                </p>
-
-                                <p data-aos="fade-up" className="text-sm text-gray-300 mt-2 line-clamp-2 flex-grow">
-                                    {job.summary}
-                                </p>
-
-                                <Link data-aos="fade-up" to={`/categories/${job._id}`} className="mt-4">
-                                    <button className="bg-blue-600 hover:bg-blue-700 w-full text-white py-2 rounded-md transition font-semibold tracking-wide">
-                                        View Details
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <Link to={`/jobs/${job._id}`} className="mt-4">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
+                    View Details
+                  </button>
+                </Link>
+              </div>
             </div>
+          ))}
         </div>
-    );
+
+        {/* Pagination */}
+        <div className="flex justify-center gap-2 mt-8 flex-wrap">
+          {currentpage > 0 && (
+            <button
+              onClick={() => setCurrentpage(currentpage - 1)}
+              className="px-3 py-1 bg-gray-200 rounded"
+            >
+              <FaLongArrowAltLeft />
+            </button>
+          )}
+
+          {[...Array(totalpage).keys()].map((i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentpage(i)}
+              className={`px-3 py-1 rounded ${
+                i === currentpage
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          {currentpage < totalpage - 1 && (
+            <button
+              onClick={() => setCurrentpage(currentpage + 1)}
+              className="px-3 py-1 bg-gray-200 rounded"
+            >
+              <FaLongArrowAltRight />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AllJobs;

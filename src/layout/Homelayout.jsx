@@ -7,7 +7,7 @@ import { AuthContext } from '../Context/Authprovider';
 const Homelayout = () => {
     const{toggle}=use(AuthContext)
     return (
-        <div className={`poppins ${toggle ? "bg-white text-black" :" bg-[#0D1B3E]"}`}>
+        <div className='bg-[#11224E] merriweather'>
             <Nav></Nav>
             <Outlet></Outlet>
             <Footer></Footer>

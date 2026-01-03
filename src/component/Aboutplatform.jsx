@@ -1,6 +1,6 @@
 const AboutPlatform = () => {
     return (
-        <div data-aos="fade-up" className="max-w-6xl mx-auto px-6 py-14 bg-[#0D1A38] text-white rounded-2xl mt-20 shadow-lg">
+        <div data-aos="fade-up" className="max-w-[1234px] mx-auto mt-20  px-6 py-14 bg-[#0D1A38] text-white rounded-2xl  shadow-lg">
             <div className="text-center">
                 <h2 data-aos="fade-up" className="text-3xl md:text-3xl font-bold mb-4">
                     Welcome to Smart Deals Marketplace ✨

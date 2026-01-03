@@ -17,10 +17,12 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul className="space-y-2">
                         <li><a href="/" className="hover:text-white transition">Home</a></li>
-                        <li><a href="/allJobs" className="hover:text-white transition">All Jobs</a></li>
+                        <li><a href="/allapps" className="hover:text-white transition">All Jobs</a></li>
                         <li><a href="/addJob" className="hover:text-white transition">Add a Job</a></li>
                         <li><a href="/my-accepted-tasks" className="hover:text-white transition">My Accepted Tasks</a></li>
                         <li><a href="/login" className="hover:text-white transition">Login/Register</a></li>
+                        <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+                        <li><a href="/aboutus" className="hover:text-white transition">About Us</a></li>
                     </ul>
                 </div>
 
@@ -40,14 +42,14 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-semibold text-white mb-4">Contact & Socials</h4>
                     <p className="text-gray-400 text-sm mb-3">
-                        Email: support@Freelance MarketPlace.com<br />
-                        Phone: +880 1234 567890
+                        Email: mdazaharul725@gmail.com<br />
+                        Phone: +880 1317087713
                     </p>
                     <div className="flex space-x-4">
-                        <a href="#" className="hover:text-white transition">Facebook</a>
-                        <a href="#" className="hover:text-white transition">Twitter</a>
-                        <a href="#" className="hover:text-white transition">LinkedIn</a>
-                        <a href="#" className="hover:text-white transition">Instagram</a>
+                        <a target="_blank" href="https://www.facebook.com/soiyod.azaharul.islam" className="hover:text-white transition">Facebook</a>
+                        <a target="_blank" href="https://github.com/Azaharul-islam615" className="hover:text-white transition">GitHub</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/azaharul-islam/" className="hover:text-white transition">LinkedIn</a>
+                       
                     </div>
                 </div>
             </div>

@@ -16,6 +16,12 @@ import img1 from "../assets/windows-MYomVPpR5FU-unsplash.jpg";
 import img2 from "../assets/brandy-kennedy-SO6RFdA1RZw-unsplash.jpg";
 import img3 from "../assets/windows-241bwQl2uWE-unsplash.jpg";
 import img4 from "../assets/faizur-rehman-pHPzdEHN6Os-unsplash.jpg";
+import FeatureElement from "./FeatureElement";
+import WhyChoose from "./WhyChoose";
+import Works from "./Works";
+import Highlights from "./Highlight";
+import FAQSection from "./Faq";
+import BlogSection from "./BlogSection";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -28,7 +34,7 @@ const Home = () => {
            
             
           
-            <div data-aos="fade-up" className="relative ">
+            <div data-aos="fade-up" className="relative h-[70vh]">
                 <Swiper
                     modules={[Autoplay, Pagination]}
                     spaceBetween={30}
@@ -47,7 +53,7 @@ const Home = () => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 1.2, ease: "easeOut" }}
                                 whileHover={{ scale: 1.05 }} 
-                                className="h-[530px] w-full object-cover brightness-[0.45]"
+                                className="h-[530px] w-full hover:scale-110 object-cover brightness-[0.45]"
                                 src={img}
                                 alt="banner"
                             />
@@ -62,23 +68,23 @@ const Home = () => {
                     transition={{ duration: 1.2 }}
                     className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10"
                 >
-                    <h2 data-aos="fade-up" className="text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
+                    <h2  className="text-3xl md:text-5xl mt-24 text-white font-bold drop-shadow-lg">
                         Reliable Freelance 
                         <span data-aos="fade-up" className="text-[#0046FF] ml-2">MarketPlace</span>
                     </h2>
-                    <p data-aos="fade-up" className="mt-3 text-lg md:text-xl text-gray-400 drop-shadow-lg">
+                    <p  className="mt-3 text-lg md:text-xl text-gray-400 drop-shadow-lg">
                         Connect with trusted professionals worldwide
                     </p>
                     <div className="mt-6 flex gap-4 justify-center">
                         <button data-aos="fade-up"
                             onClick={handlebtn1}
-                            className="bg-blue-500 hover:bg-blue-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg"
+                            className="bg-blue-500 hover:scale-110 transition duration-500 hover:bg-blue-600  text-white px-5 py-2 rounded-lg shadow-lg"
                         >
                             Explore Jobs
                         </button>
                         <button data-aos="fade-up"
                             onClick={handlebtn2}
-                            className="bg-green-500 hover:bg-green-600 duration-300 text-white px-5 py-2 rounded-lg shadow-lg"
+                            className="bg-green-500 hover:scale-110 hover:bg-green-600 transition duration-500 text-white px-5 py-2 rounded-lg shadow-lg"
                         >
                             Create a Job
                         </button>
@@ -90,6 +96,12 @@ const Home = () => {
             <LatestJobs />
             <TopCategories />
             <AboutPlatform />
+           <FeatureElement></FeatureElement>
+           <Works></Works>
+           <Highlights></Highlights>
+           <FAQSection></FAQSection>
+           <BlogSection></BlogSection>
+           <WhyChoose></WhyChoose>
         </div>
     );
 };
