@@ -6,37 +6,46 @@ import { AuthContext } from "../Context/Authprovider";
 import { toast } from "react-toastify";
 
 const Categories = () => {
-    const { user, addJob } = useContext(AuthContext); // fixed useContext
+    const { user, addJob } = useContext(AuthContext);
     const { id } = useParams();
-
-    console.log(id)
     const [job, setJob] = useState(null);
 
-
+    // fetch job details
     useEffect(() => {
         axios.get(`https://frelacing.vercel.app/jobs/${id}`)
-            .then(res => {
-                setJob(res.data);
-            })
-            .catch(err => {
-                console.error('Error fetching job details:', err);
-            });
+            .then(res => setJob(res.data))
+            .catch(err => console.error('Error fetching job details:', err));
     }, [id]);
 
     if (!job) {
         return (
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center mt-20">
                 <span className="loading loading-spinner text-error"></span>
             </div>
         );
     }
+
+    // handle Accept Job
     const handles = () => {
-        addJob(job)
-        toast(<div>job Accepted successfully</div>)
+        addJob(job); // context update
+
+        // POST job + uploader info to DB
+        axios.post("https://frelacing.vercel.app/saveJobDetails", {
+            job,
+            uploader: user
+        })
+            .then(res => {
+                toast.success("Job details saved successfully!");
+            })
+            .catch(err => {
+                toast.error("Failed to save job details!");
+                console.error(err);
+            });
     }
+
     return (
         <div data-aos="fade-up" className="bg-[#0D1B3E] min-h-screen font-sans text-white">
-            <title>Freelance MarketPlac-Categoriesdetails</title>
+            <title>Freelance Marketplace - Categories Details</title>
 
             <img
                 data-aos="fade-up"
@@ -89,9 +98,11 @@ const Categories = () => {
                     </div>
 
                     <div className="mt-10 flex flex-wrap gap-4">
-
                         {user?.email !== job.userEmail && (
-                            <button onClick={handles} className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold">
+                            <button
+                                onClick={handles}
+                                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition px-6 py-3 rounded-lg font-semibold shadow-lg"
+                            >
                                 Accept Job
                             </button>
                         )}

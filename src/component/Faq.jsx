@@ -25,9 +25,9 @@ const FAQSection = () => {
     ];
 
     return (
-        <section data-aos="fade-up" className="mt-20 max-w-7xl mx-auto px-4">
+        <section data-aos="fade-up" className="mt-16 max-w-7xl mx-auto px-4">
             <h2 data-aos="fade-up" className="text-3xl font-bold text-center text-[#8C00FF] mb-2">
-                Frequently Asked Questions
+                Frequently  <span className="text-white">Asked Questions</span>
             </h2>
             <p data-aos="fade-up" className="text-center text-gray-300 mb-6">
                 Find answers to the most common questions about our platform.

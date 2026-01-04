@@ -5,10 +5,10 @@ import { AuthContext } from "../Context/Authprovider";
 import { toast } from "react-toastify";
 
 const AddJob = () => {
-    const { user, toggle } = useContext(AuthContext);
-
+    const { user } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
+        price: "",
         title: "",
         postedBy: user?.displayName || "",
         category: "",
@@ -18,18 +18,15 @@ const AddJob = () => {
         postedAt: "",
     });
 
-
     useEffect(() => {
         const now = new Date().toISOString();
         setFormData((prev) => ({ ...prev, postedAt: now }));
     }, []);
 
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
 
     const handleSubmit = () => {
         if (!formData.title || !formData.category || !formData.summary || !formData.coverImage) {
@@ -39,13 +36,10 @@ const AddJob = () => {
 
         axios
             .post("https://frelacing.vercel.app/addjob", formData)
-            .then((res) => {
-                console.log(" Job added:", res.data);
-
-                toast(<div>Job added successfully!</div>)
-
-
+            .then(() => {
+                toast.success("Job added successfully!");
                 setFormData({
+                    price: "",
                     title: "",
                     postedBy: user?.displayName || "",
                     category: "",
@@ -56,151 +50,176 @@ const AddJob = () => {
                 });
             })
             .catch((err) => {
-                toast(<p>Something went wrong!{err}</p>)
-
+                toast.error("Something went wrong!");
+                console.log(err);
             });
     };
 
     return (
-        <div data-aos="fade-up"
-            className={`min-h-screen ${toggle ? "bg-white text-black" : "bg-[#0D1B3E] text-white"
-                } py-14 px-6 font-sans`}
+        <div
+            className="min-h-screen py-16 px-6 font-sans 
+           "
         >
-            <div data-aos="fade-up" className="max-w-3xl mx-auto text-center mb-12">
-                <h2 className="text-3xl font-bold text-indigo-300 flex justify-center items-center gap-3">
-                    <FaPlusCircle /> Add New Job
+            {/* Heading */}
+            <div className="max-w-3xl mx-auto text-center mb-8 mt-16">
+                <h2 className="text-3xl font-bold text-indigo-200 flex justify-center items-center gap-3">
+                    <FaPlusCircle className="text-indigo-400" /> Add New Job
                 </h2>
-                <p data-aos="fade-up" className="text-gray-400 font-semibold mt-2">
+                <p className="text-gray-300 font-medium mt-2">
                     Share a job opportunity for freelancers
                 </p>
             </div>
 
-            <form data-aos="fade-up"
-                className={`max-w-4xl mx-auto ${toggle ? "bg-gray-100 text-black" : "bg-[#0F2349] text-white"
-                    } p-10 rounded-3xl shadow-2xl border border-indigo-800 space-y-6`}
+            {/* Gradient Border Wrapper */}
+            <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#0F172A] via-[#111827] to-[#1E293B]
+
+
+ p-[2px] rounded-3xl bg-[#0A1445]
+              
+"
             >
-
-                <div data-aos="fade-up">
-                    <label className="block font-semibold mb-2 text-indigo-300">
-                        Job Title
-                    </label>
-                    <input data-aos="fade-up"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        type="text"
-                        placeholder="Enter job title"
-                        className="w-full bg-[#091631] text-white p-3 rounded-lg border border-gray-700 focus:outline-none"
-                    />
-                </div>
-
-
-                <div data-aos="fade-up">
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        Posted By
-                    </label>
-                    <input data-aos="fade-up"
-                        name="postedBy"
-                        value={formData.postedBy}
-                        readOnly
-                        className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
-                    />
-                </div>
-
-
-                <div>
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        Category
-                    </label>
-                    <select data-aos="fade-up"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        className="w-full bg-[#091631] text-gray-300 p-3 rounded-lg border border-gray-700"
-                    >
-                        <option value="">Select Category</option>
-                        <option value="Web Development">Web Development</option>
-                        <option value="Graphics Design">Graphics Design</option>
-                        <option value="Digital Marketing">Digital Marketing</option>
-                        <option value="Data Entry">Data Entry</option>
-                    </select>
-                </div>
-
-
-                <div>
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        Summary
-                    </label>
-                    <textarea data-aos="fade-up"
-                        name="summary"
-                        value={formData.summary}
-                        onChange={handleChange}
-                        rows="4"
-                        placeholder="Short job summary..."
-                        className="w-full bg-[#091631] text-gray-200 p-3 rounded-lg border border-gray-700"
-                    ></textarea>
-                </div>
-
-
-                <div>
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        Cover Image URL
-                    </label>
-                    <input data-aos="fade-up"
-                        name="coverImage"
-                        value={formData.coverImage}
-                        onChange={handleChange}
-                        type="text"
-                        placeholder="https://example.com/image.jpg"
-                        className="w-full bg-[#091631] text-white p-3 rounded-lg border border-gray-700"
-                    />
-                </div>
-
-
-                {formData.coverImage && (
-                    <div data-aos="fade-up" className="mt-3 flex justify-center">
-                        <img
-                            src={formData.coverImage}
-                            alt="Preview"
-                            className="w-64 h-40 object-cover rounded-xl border border-indigo-400 shadow-lg"
+                {/* Form */}
+                <form
+                    className="hover:from-[#020726] hover:to-[#162FCC] rounded-3xl p-10 space-y-4 shadow-2xl"
+                >
+                    {/* Job Title */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Job Title
+                        </label>
+                        <input
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="Enter job title"
+                            className="w-full bg-[#111C55] text-gray-200 p-3 rounded-lg border border-indigo-800 focus:outline-none focus:border-indigo-400"
                         />
                     </div>
-                )}
 
+                    {/* Posted By */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Posted By
+                        </label>
+                        <input
+                            value={formData.postedBy}
+                            readOnly
+                            className="w-full bg-[#111C55] text-gray-300 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
 
-                <div>
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        User Email
-                    </label>
-                    <input data-aos="fade-up"
-                        name="email"
-                        value={formData.userEmail}
-                        readOnly
-                        className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
-                    />
-                </div>
+                    {/* Category */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Category
+                        </label>
+                        <select
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            className="w-full bg-[#111C55] text-gray-200 p-3 rounded-lg border border-indigo-800"
+                        >
+                            <option value="">Select Category</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Graphics Design">Graphics Design</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Data Entry">Data Entry</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label data-aos="fade-up" className="block font-semibold mb-2 text-indigo-300">
-                        Posted Date / Time
-                    </label>
-                    <input data-aos="fade-up"
-                        name="postedAt"
-                        value={formData.postedAt}
-                        readOnly
-                        className="w-full bg-gray-800 text-gray-300 p-3 rounded-lg border border-gray-700"
-                    />
-                </div>
+                    {/* Summary */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Summary
+                        </label>
+                        <textarea
+                            name="summary"
+                            value={formData.summary}
+                            onChange={handleChange}
+                            rows="4"
+                            placeholder="Short job summary..."
+                            className="w-full bg-[#111C55] text-gray-200 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
 
+                    {/* Cover Image */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Cover Image URL
+                        </label>
+                        <input
+                            name="coverImage"
+                            value={formData.coverImage}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="https://example.com/image.jpg"
+                            className="w-full bg-[#111C55] text-gray-200 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
 
-                <button data-aos="fade-up"
-                    type="button"
-                    onClick={handleSubmit}
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition shadow-lg"
-                >
-                    Add Job
-                </button>
-            </form>
+                    {/* Image Preview */}
+                    {formData.coverImage && (
+                        <div className="mt-4 flex justify-center">
+                            <img
+                                src={formData.coverImage}
+                                alt="Preview"
+                                className="w-64 h-40 object-cover rounded-xl 
+                                border-2 border-indigo-500 shadow-lg"
+                            />
+                        </div>
+                    )}
+
+                    {/* Email */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            User Email
+                        </label>
+                        <input
+                            value={formData.userEmail}
+                            readOnly
+                            className="w-full bg-[#111C55] text-gray-300 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
+
+                    {/* Posted Date */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Posted Date / Time
+                        </label>
+                        <input
+                            value={formData.postedAt}
+                            readOnly
+                            className="w-full bg-[#111C55] text-gray-300 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
+
+                    {/* Salary */}
+                    <div>
+                        <label className="block font-semibold mb-1 text-indigo-300">
+                            Salary
+                        </label>
+                        <input
+                            name="price"
+                            type="number"
+                            placeholder="Enter salary (e.g. 500)"
+                            value={formData.price}
+                            onChange={handleChange}
+                            className="w-full bg-[#111C55] text-gray-200 p-3 rounded-lg border border-indigo-800"
+                        />
+                    </div>
+
+                    {/* Button */}
+                    <button
+                        type="button"
+                        onClick={handleSubmit}
+                        className="w-full py-3 rounded-xl font-semibold text-white
+                        bg-gradient-to-r from-[#050E3C] to-[#1E40FF] hover:opacity-90 transition shadow-xl"
+                    >
+                        Add Job
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

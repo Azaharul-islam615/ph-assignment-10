@@ -21,7 +21,7 @@ const features = [
 const FeatureElement = () => {
     return (
         <section data-aos="fade-up" className="my-16 max-w-7xl mx-auto px-4  ">
-            <h2 data-aos="fade-up" className="text-center text-3xl font-bold text-[#8C00FF]  mb-2">🚀 Core Feature</h2>
+            <h2 data-aos="fade-up" className="text-center text-3xl font-bold text-white  mb-2">🚀 Core <span className="text-[#8C00FF]">Feature</span> </h2>
             <p data-aos="fade-up" className="text-center text-gray-300  mb-4 ">
                 Explore the main features of our platform that make hiring and <br /> managing freelancers fast,
                 secure, and reliable.  Designed <br /> for  efficiency and ease of use for every user.

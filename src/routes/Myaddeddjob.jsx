@@ -14,7 +14,7 @@ const MyAddedJobs = () => {
 
     useEffect(() => {
         axios
-            .get("https://frelacing.vercel.app/jobs")
+            .get("https://frelacing.vercel.app/job")
             .then((res) => setAllJobs(res.data))
             .catch((err) => {
                 toast.error("Error fetching data!");
@@ -38,7 +38,7 @@ const MyAddedJobs = () => {
 
     const handleDelete = (id) => {
         axios
-            .delete(`https://frelacing.vercel.app/jobs/${id}`)
+            .delete(`https://frelacing.vercel.app/job/${id}`)
             .then(() => {
 
                 toast(<div>Job deleted successfully!</div>)
@@ -56,12 +56,12 @@ const MyAddedJobs = () => {
                 My Added Jobs
             </h2>
 
-            <div className="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {addjob.length > 0 ? (
                     addjob.map((job) => (
                         <div
                             key={job._id}
-                            className="bg-[#10224D] rounded-2xl shadow-lg flex flex-col overflow-hidden"
+                            className="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col hover:scale-[1.02] duration-300"
                         >
                             <img
                                 src={
@@ -71,27 +71,20 @@ const MyAddedJobs = () => {
                                     "https://via.placeholder.com/400x200?text=No+Image"
                                 }
                                 alt={job.title}
-                                className="w-full h-40 object-cover rounded-t-2xl"
+                                className="w-full h-38 object-cover hover:scale-125 transition duration-300"
                             />
 
-                            <div className="p-6 flex flex-col justify-between flex-1">
-                                <div>
-                                    <h3 className="text-xl font-semibold mb-2 text-white">
-                                        {job.title}
-                                    </h3>
-                                    <p className="text-gray-300 mb-1">
-                                        <span className="font-semibold">Category:</span>{" "}
-                                        {job.category}
-                                    </p>
-                                    <p className="text-gray-400 text-sm">
-                                        <span className="font-semibold">Posted on:</span>{" "}
-                                        {job.postedAt
-                                            ? new Date(job.postedAt).toLocaleString()
-                                            : "N/A"}
-                                    </p>
-                                </div>
+                            <div className="p-5 flex flex-col flex-grow">
+                                <h3 className="text-xl text-gray-800 font-bold">{job.title}</h3>
+                                <p className="text-sm text-gray-700">Category: {job.category}</p>
+                                <p className="text-sm text-gray-700">Salary: {job.price}</p>
+                                <p className="text-sm text-gray-600">Posted By: {job.postedBy}</p>
 
-                                <div className="mt-4 flex gap-3">
+                                <p className="text-sm text-gray-600 mt-2 line-clamp-2 flex-grow">
+                                    {job.summary}
+                                </p>
+
+                                <div className="mt-2 flex justify-center gap-3">
                                     <button
                                         onClick={() => handleUpdate(job._id)}
                                         className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold transition"

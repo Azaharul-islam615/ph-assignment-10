@@ -32,7 +32,7 @@ const BlogSection = () => {
         <section className="mt-16  ">
             <div className="max-w-7xl mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center text-[#8C00FF] mb-2">
-                    Latest Blogs
+                    <span className="text-white">  Latest</span> Blogs
                 </h2>
                 <p className="text-center text-gray-300 mb-6">
                     Insights, tips, and updates from our freelance marketplace platform.

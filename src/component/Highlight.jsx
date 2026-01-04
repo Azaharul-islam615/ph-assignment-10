@@ -24,7 +24,7 @@ const Highlights = () => {
         <section data-aos="fade-up" className=" mt-16 bg-[#11224E] max-w-7xl mx-auto px-4">
             <div className="">
                 {/* Section Title */}
-                <h2 data-aos="fade-up" className="text-3xl md:text-3xl font-bold text-center text-[#8C00FF] mb-2">
+                <h2 data-aos="fade-up" className="text-3xl md:text-3xl font-bold text-center text-white mb-2">
                     Highlights
                 </h2>
                 <p data-aos="fade-up" className="text-center text-gray-300 mb-6">Our highlights showcase the key strengths that set our platform apart. 

@@ -18,8 +18,8 @@ const LatestJobs = () => {
 
     return (
         <div data-aos="fade-up" className="max-w-7xl bg-[#11224E] mx-auto mt-14 md:20 lg:mt-28  px-4  text-white py-12 rounded-b-lg">
-            <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-[#8C00FF] text-center">
-                Latest 6 <span className='text-[#8C00FF]'> Jobs</span>
+            <h2 data-aos="fade-up" className="text-3xl font-bold mb-4 text-white text-center">
+                Latest 8 <span className='text-[#8C00FF]'> Jobs</span>
             </h2>
             <p data-aos="fade-up" className="text-center text-gray-300 text-[16px] mb-6">
                 Discover recent job opportunities across web development,<br /> design,marketing, and more.  Stay updated <br /> and apply to trusted listings.

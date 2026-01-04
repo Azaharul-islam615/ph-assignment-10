@@ -10,8 +10,8 @@ const TopCategories = () => {
     ];
 
     return (
-        <div data-aos="fade-up" className="max-w-7xl mx-auto my-16 px-4 text-white">
-            <h2 data-aos="fade-up" className="text-3xl font-bold text-center mb-2 text-[#8C00FF]">
+        <div data-aos="fade-up" className="max-w-7xl mx-auto mt-4 mb-16 px-4 text-white">
+            <h2 data-aos="fade-up" className="text-3xl font-bold text-center mb-2 text-white">
                 Top  <span className='text-[#8C00FF]'> Categories</span>🔥
             </h2>
             <p data-aos="fade-up" className="text-gray-300 text-center mb-6">Explore our top categories to discover in-demand skills and services. <br />

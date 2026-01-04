@@ -4,6 +4,7 @@ import img from"../assets/web.webp"
 import { AuthContext } from '../Context/Authprovider';
 import { toast } from 'react-toastify';
 import { FaCheckCircle } from 'react-icons/fa';
+import { CgLogOut } from "react-icons/cg";
 
 const Nav = () => {
     const { user, logout,setToggle,toggle } = use(AuthContext);
@@ -29,16 +30,15 @@ const Nav = () => {
     const links=<>
         <NavLink to="/" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">Home</NavLink>
         <NavLink to='/allapps' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AllJobs</NavLink>
-        <NavLink to="/acceptedtask" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]"> AcceptedTasks</NavLink>
-        <NavLink to='/contact' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Contact</NavLink>
+        
+        
         <NavLink to='/aboutus' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AboutUs</NavLink>
+        <NavLink to='/condition' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">TermsAndConditions</NavLink>
        
        
         {
             user && <>
-                <NavLink to="/myjob" className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">AddedJobs</NavLink>
-                <NavLink to="/addjob" className="all hover:text-pink-600  mr-4 font-semibold text-[#CBCBCB]">AddJob</NavLink>
-               
+                <NavLink to='/contact' className="all hover:text-pink-600 mr-4 font-semibold text-[#CBCBCB]">Contact</NavLink>
             </>
         }
        
@@ -73,12 +73,7 @@ const Nav = () => {
                 <input onClick={handletoggle} type="checkbox" defaultChecked className="toggle toggle-primary mr-3" />
                 
                 {user ? (
-                    <button
-                        onClick={handlelogout}
-                        className="btn hidden md:block text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-[#8CE4FF] hover:text-black"
-                    >
-                        Logout
-                    </button>
+                    ""
                 ) : <>
                         <Link to="/login" className="btn rounded-lg text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 mr-2 hover:text-white">Login</Link>
                         <Link to="/register" className="btn rounded-lg text-[10px] md:text-[16px] bg-[#0C2B4E] text-white hover:bg-blue-600 hover:text-white">Register</Link>
@@ -99,24 +94,55 @@ const Nav = () => {
 
                         {/* Dropdown */}
                         {openProfile && (
-                            <div className="absolute right-0 mt-2 w-44 bg-[#050E3C] text-white rounded-lg shadow-lg z-50 p-3">
-                                <p className="font-semibold border-b border-gray-600 pb-1">
+                            <div className="absolute border-[1.5px] border-blue-500 p-4 right-0 mt-2 w-80 bg-[#050E3C] text-white rounded-lg shadow-lg z-50 ">
+                                <img className='rounded-full w-[70px] mx-auto mb-2' src={user.photoURL} alt="" />
+                                <p className="font-semibold border-b text-center border-gray-600 pb-2 ">
                                     {user.displayName}
                                 </p>
+                                <div className='flex justify-center mt-2'> <Link to="/profile" className='btn bg-gradient-to-r from-[#050E3C] to-[#1E40FF]
+ rounded-lg mx-auto text-white'>Veiwe Profile</Link></div>
 
                                 <Link
-                                    to="/dashboard"
-                                    className="block mt-2 hover:text-blue-400"
+                                    to="/addjob"
+                                    className="block text-[15px] mt-8 hover:text-blue-400 border-b border-gray-600"
                                     onClick={() => setOpenProfile(false)}
                                 >
-                                    Dashboard
+                                    AddJob
                                 </Link>
-
+                                <Link
+                                    to="/myjob"
+                                    className="block text-[15px] mt-2 hover:text-blue-400 border-b border-gray-600"
+                                    onClick={() => setOpenProfile(false)}
+                                >
+                                    AddedJob
+                                </Link>
+                                <Link
+                                    to="/acceptedtask"
+                                    className="block mt-2 text-[15px] hover:text-blue-400 border-b border-gray-600"
+                                    onClick={() => setOpenProfile(false)}
+                                >
+                                    AcceptedTasks
+                                </Link>
+                                <Link
+                                    to="/dashbord"
+                                    className="block mt-2 text-[15px] hover:text-blue-400 border-b border-gray-600"
+                                    onClick={() => setOpenProfile(false)}
+                                >
+                                    Actionable Dashboard
+                                </Link>
+                                <Link
+                                   
+                                    className="block mt-2 text-[15px] hover:text-blue-400 border-b border-gray-600"
+                                    onClick={() => setOpenProfile(false)}
+                                >
+                                    Settings
+                                </Link>
+                                
                                 <button
                                     onClick={handlelogout}
-                                    className="mt-2 w-full text-left hover:text-red-400"
+                                    className="mt-2 flex text-red-500 items-center gap-1  text-[15px] w-full text-left hover:text-red-400"
                                 >
-                                    Logout
+                                    Logout <CgLogOut color='red' size={24} />
                                 </button>
                             </div>
                         )}

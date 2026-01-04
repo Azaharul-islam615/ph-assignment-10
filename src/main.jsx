@@ -26,6 +26,9 @@ import 'aos/dist/aos.css';
 import MyAddedJobs from './routes/Myaddeddjob.jsx';
 import Contact from './component/Contact.jsx';
 import AboutUs from './component/AboutUs.jsx';
+import ProfilePage from './component/ProfilePage.jsx';
+import DashboardOverview from './component/DashbordOverview.jsx';
+import TermsAndConditions from './component/TermsandConditions.jsx';
 
 
 AOS.init({
@@ -45,12 +48,15 @@ const router=createBrowserRouter([
     {path:'/contact',
       Component:Contact
     },
+    {path:'/profile',element:<Privetprovider><ProfilePage></ProfilePage></Privetprovider>},
     {path:'/aboutus',Component:AboutUs},
     {path:'/categories/:id',element:<Categories></Categories>},
     {path:"/addjob",element:<Privetprovider><AddJob></AddJob></Privetprovider>},
     {path:'/update/:id',element:<Privetprovider><Update></Update></Privetprovider>},
     {path:'/acceptedtask',element:<Privetprovider><Myacceptedtask></Myacceptedtask></Privetprovider>},
-    {path:'/myjob',element:<Privetprovider><MyAddedJobs></MyAddedJobs></Privetprovider>}
+    {path:'/myjob',element:<Privetprovider><MyAddedJobs></MyAddedJobs></Privetprovider>},
+    {path:'/dashbord',Component:DashboardOverview},
+    {path:'/condition',Component:TermsAndConditions}
   ]
 }
 ])
